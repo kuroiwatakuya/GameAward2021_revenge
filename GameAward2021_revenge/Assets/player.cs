@@ -9,14 +9,15 @@ public class player : MonoBehaviour
     [SerializeField] private float AngleSpeed;           //回転速度
     [SerializeField] private float MoveSpeed;
     private float Speed;
-    private float Power = 10.0f;
+    private float Power = 3.0f;
     private Vector3 PlayerPos;                                  //プレイヤーのポジション
+    private Vector3 Direction;
 
     private Ray ray;                                            //飛ばすレイ
     private RaycastHit hit;                                     //当たった対象物の情報格納
     private Vector3 rayPosition;                                //Rayの位置
     private float Distance = 0.6f;                              //Rayの長さ
-
+    private Vector3 Cameraforward;
 
 
 
@@ -63,17 +64,19 @@ public class player : MonoBehaviour
 
     private void Idle()
     {
-        Vector3 direction = Vector3.zero;
 
-        direction.x = Input.GetAxisRaw("Horizontal");
-        direction.z = Input.GetAxisRaw("Vertical");
+        Cameraforward = Vector3.Scale(Camera.main.transform.forward, new Vector3(1, 0, 1)).normalized;
 
-        direction = direction.normalized;
-        Quaternion q = Quaternion.LookRotation(direction.normalized, Vector3.up);
+        Direction = Cameraforward * Input.GetAxisRaw("Vertical") + Camera.main.transform.right * Input.GetAxisRaw("Horizontal");
+
+        Quaternion q = Quaternion.LookRotation(Direction.normalized, Vector3.up);
         transform.rotation = Quaternion.Lerp(transform.rotation, q, Time.deltaTime * AngleSpeed);
 
-        float rad=Mathf.Pow(Mathf.Max(0, Vector3.Dot(transform.forward, direction)), Power);
+        float rad=Mathf.Pow(Mathf.Max(0, Vector3.Dot(transform.forward, Direction)), Power);
         Speed = MoveSpeed * rad;
+
+
+
 
         if (Mathf.Abs(Input.GetAxisRaw("Horizontal")) == 1 && Input.GetAxisRaw("Vertical") == 0 && rad >= 1.0f)
         {
@@ -88,7 +91,7 @@ public class player : MonoBehaviour
 
     private void Walk()
     {
-        transform.position += Time.deltaTime * transform.forward * Speed;
+        transform.position += Time.deltaTime * Direction *Speed;
 
         if (Physics.Raycast(ray, out hit, Distance))
         {
