@@ -7,7 +7,7 @@ public class TurnManager : MonoBehaviour
     private int MaxTurn = 30;//ターン上限
     private int MaxInvertCount = 3;//表裏変換ターン数上限
     private int TurnCount;//現在のターン数
-    public int InvertCount;//表裏変換ターン数
+    public int InvertCount;//表裏変換のターン数
     public int Environment;//表裏判定　1が表　-1が裏
 
     // Start is called before the first frame update
@@ -42,20 +42,18 @@ public class TurnManager : MonoBehaviour
     //　　　変数にaを加算
     //
     //Get～()関数
-    //　　　変数をゲット
+    //　　　変数を取得
     //
     //============================================================
 
     //ターン上限
-    public int SetMaxTurn(int a)
+    public void SetMaxTurn(int a)
     {
         MaxTurn = a;
-        return MaxTurn;
     }
-    public int AddMaxTurn(int a)
+    public void AddMaxTurn(int a)
     {
         MaxTurn += a;
-        return MaxTurn;
     }
     public int GetMaxTurn()
     {
@@ -63,15 +61,13 @@ public class TurnManager : MonoBehaviour
     }
 
     //現在のターン数
-    public int SetTurnCount(int a)
+    public void SetTurnCount(int a)
     {
         TurnCount = a;
-        return TurnCount;
     }
-    public int AddTurnCount(int a)
+    public void AddTurnCount(int a)
     {
         TurnCount += a;
-        return TurnCount;
     }
     public int GetTurnCount()
     {
@@ -79,15 +75,13 @@ public class TurnManager : MonoBehaviour
     }
 
     //表裏変換ターン数
-    public int SetInvertCount(int a)
+    public void SetInvertCount(int a)
     {
         InvertCount = a;
-        return InvertCount;
     }
-    public int AddInvertCount(int a)
+    public void AddInvertCount(int a)
     {
         InvertCount += a;
-        return InvertCount;
     }
     public int GetInvertCount()
     {
