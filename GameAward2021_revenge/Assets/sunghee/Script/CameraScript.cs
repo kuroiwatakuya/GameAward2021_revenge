@@ -19,13 +19,13 @@ public class CameraScript : MonoBehaviour
     void Update()
     {
         // ç∂âEâÒì]
-        Vector3 axis = transform.TransformDirection(Vector3.up) * -Input.GetAxisRaw("Horizontal");
-        axis = transform.TransformDirection(Vector3.down) * -Input.GetAxisRaw("Horizontal");
+        Vector3 axis = transform.TransformDirection(Vector3.up) * -Input.GetAxisRaw("Horizontal2");
+        axis = transform.TransformDirection(Vector3.down) * -Input.GetAxisRaw("Horizontal2");
         transform.RotateAround(m_Field.transform.position, axis, m_Speed * Time.deltaTime);
         this.gameObject.transform.LookAt(m_Field.transform);
         // è„â∫âÒì]
-        axis = transform.TransformDirection(Vector3.right) * -Input.GetAxisRaw("Vertical");
-        axis = transform.TransformDirection(Vector3.left) * -Input.GetAxisRaw("Vertical");
+        axis = transform.TransformDirection(Vector3.right) * -Input.GetAxisRaw("Vertical2");
+        axis = transform.TransformDirection(Vector3.left) * -Input.GetAxisRaw("Vertical2");
         transform.RotateAround(m_Field.transform.position, axis, m_Speed * Time.deltaTime);
         this.gameObject.transform.LookAt(m_Field.transform);
     }
