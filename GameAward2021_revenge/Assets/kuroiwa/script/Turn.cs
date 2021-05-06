@@ -16,14 +16,14 @@ public class Turn : MonoBehaviour
     public Text TopTurn;                         //上部ターン数表示
     public Text UnderTurn;                     //下部ターン数表示
 
-    public int MaxTurnNum;                 //最大ターン数値
-    public int TopTurnNum;                  //上部ターン数
-    public int UnderTurnNum;              //下部ターン数
+    public int MaxTurnNum;                   //最大ターン数値
+    public int TopTurnNum;                    //上部ターン数
+    public int UnderTurnNum;                 //下部ターン数
 
     // Start is called before the first frame update
     void Start()
     {
-        TurnMng = TurnManager.gameObject.GetComponent<TurnManager>();
+        TurnMng = TurnManager.gameObject.GetComponent<TurnManager>();           //ターンマネージャースクリプトの格納
 
         //数値格納
         MaxTurnNum = TurnMng.GetMaxTurn();                    //最大ターン数数値格納
@@ -46,16 +46,23 @@ public class Turn : MonoBehaviour
             /*デバッグ用 マウス左クリック*/
             if(Input.GetMouseButtonDown(0))
             {
-                //最大ターン数減少
+                //裏のターン数を増加させる
+                if (UnderTurnNum < 3)
+                {
+                    UnderTurnNum += 1;
+                }
+
+                //ターン数減少
                 MaxTurnNum -= 1;
                 TopTurnNum -= 1;
 
                 //UIに反映
-                MaxTurn.text = MaxTurnNum.ToString();           
+                MaxTurn.text = MaxTurnNum.ToString();
                 TopTurn.text = TopTurnNum.ToString();
+                UnderTurn.text = UnderTurnNum.ToString();
 
                 //変換カウント加算
-                TurnMng.AddInvertCount(1);
+                TurnMng.AddInvertCount(1); 
             }
         }
        //裏状態
@@ -64,10 +71,19 @@ public class Turn : MonoBehaviour
             //裏のターン数と全体のターン数を減少させる
             if(Input.GetMouseButtonDown(0))
             {
+                //表のターン数を増加させる、最大ターン数が3以下になった場合加算しない
+                if (TopTurnNum < 3 && MaxTurnNum > 3)
+                {
+                    TopTurnNum += 1;
+                }
+
+                //ターン減少
                 MaxTurnNum -= 1;
                 UnderTurnNum -= 1;
 
+                //UIに反映
                 MaxTurn.text = MaxTurnNum.ToString();
+                TopTurn.text = TopTurnNum.ToString();
                 UnderTurn.text = UnderTurnNum.ToString();
 
                 //変換カウント加算

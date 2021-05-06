@@ -7,8 +7,8 @@ public class TurnManager : MonoBehaviour
     private int MaxTurn = 30;//ターン上限
     private int MaxInvertCount = 3;//表裏変換ターン数上限
     private int TurnCount;//現在のターン数
-    public int InvertCount;//表裏変換のターン数
-    public int Environment;//表裏判定　1が表　-1が裏
+    private int InvertCount;//表裏変換のターン数
+    private int Environment;//表裏判定　1が表　-1が裏
 
     // Start is called before the first frame update
     void Start()
@@ -21,7 +21,7 @@ public class TurnManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (InvertCount > MaxInvertCount)
+        if (InvertCount == MaxInvertCount)
         {
             InvertCount = 0;
             ChangeEnvironment();
