@@ -4,35 +4,38 @@ using UnityEngine;
 
 public class TurnManager : MonoBehaviour
 {
-    private int MaxTurn = 30;//ターン上限
-    private int MaxInvertCount = 3;//表裏変換ターン数上限
-    private int TurnCount;//現在のターン数
+    [SerializeField]private int MaxTurn;//ターン上限
+    [SerializeField] private int MaxInvertCount;//表裏変換ターン数上限
+    [SerializeField] private int TurnCount;//現在のターン数
     private int InvertCount;//表裏変換のターン数
     private int Environment;//表裏判定　1が表　-1が裏
 
     // Start is called before the first frame update
     void Start()
     {
-        TurnCount = 0;
-        InvertCount = 0;
+        TurnCount = MaxTurn;
+        InvertCount = MaxInvertCount;
         Environment = 1;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (InvertCount == MaxInvertCount)
-        {
-            InvertCount = 0;
-            ChangeEnvironment();
-        }
+        
     }
 
     //表裏反転関数
     public void ChangeEnvironment()
     {
         Environment *= -1;
+
     }
+
+    public void ResetInvertCount()
+    {
+        InvertCount = MaxInvertCount;
+    }
+
 
     //============================================================
     //Set～(int a)関数
@@ -69,6 +72,11 @@ public class TurnManager : MonoBehaviour
     {
         TurnCount += a;
     }
+
+    public void ReduceTrunCount(int a)
+    {
+        TurnCount -= a;
+    }
     public int GetTurnCount()
     {
         return TurnCount;
@@ -83,6 +91,12 @@ public class TurnManager : MonoBehaviour
     {
         InvertCount += a;
     }
+    public void ReduceInvertTrunCount(int a)
+    {
+        InvertCount -= a;
+    }
+
+
     public int GetInvertCount()
     {
         return InvertCount;
@@ -99,4 +113,6 @@ public class TurnManager : MonoBehaviour
     {
         return MaxInvertCount;
     }
+
+
 }
