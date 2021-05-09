@@ -12,6 +12,10 @@ public class Turn : MonoBehaviour
     public GameObject TurnManager;      //ターンマネージャー格納
     private TurnManager TurnMng;         //ターンマネージャーのスクリプト受け取り
 
+    //ターンオブジェクト
+    public GameObject TopTurnObj;  
+    public GameObject UnderTurnObj;
+
     public Text MaxTurn;                        //最大ターン数表示
     public Text TopTurn;                         //上部ターン数表示
     public Text UnderTurn;                     //下部ターン数表示
@@ -26,8 +30,8 @@ public class Turn : MonoBehaviour
         TurnMng = TurnManager.gameObject.GetComponent<TurnManager>();           //ターンマネージャースクリプトの格納
 
         //数値格納
-        MaxTurnNum = TurnMng.GetMaxTurn();                    //最大ターン数数値格納
-        TopTurnNum = TurnMng.GetMaxInvertCount();          //初期裏表変換残りターン数格納
+        MaxTurnNum = TurnMng.GetTurnCount();                       //最大ターン数数値格納
+        TopTurnNum = TurnMng.GetMaxInvertCount();               //初期裏表変換残りターン数格納
         UnderTurnNum = TurnMng.GetMaxInvertCount();
 
         //ターン数UI格納
@@ -40,8 +44,12 @@ public class Turn : MonoBehaviour
     void Update()
     {
         //表状態
-       if(TurnMng.GetEnvironment() == 1)
+        if (TurnMng.GetEnvironment() == 1)
         {
+            //UI表示切り替え
+            TopTurnObj.SetActive(true);
+            UnderTurnObj.SetActive(false);
+
             //表のターン数と全体のターン数を減少させる
             /*デバッグ用 マウス左クリック*/
             if(Input.GetMouseButtonDown(0))
@@ -62,15 +70,19 @@ public class Turn : MonoBehaviour
                 UnderTurn.text = UnderTurnNum.ToString();
 
                 //変換カウント加算
-                TurnMng.AddInvertCount(1); 
+                TurnMng.AddInvertCount(1);
             }
         }
        //裏状態
        else if(TurnMng.GetEnvironment() == -1)
         {
+            //UI表示切り替え
+            UnderTurnObj.SetActive(true);       //裏歩数UIオン
+            TopTurnObj.SetActive(false);          //表歩数UIオフ
+
             //裏のターン数と全体のターン数を減少させる
-            if(Input.GetMouseButtonDown(0))
-            {
+            if (Input.GetMouseButtonDown(0))
+            {  
                 //表のターン数を増加させる、最大ターン数が3以下になった場合加算しない
                 if (TopTurnNum < 3 && MaxTurnNum > 3)
                 {

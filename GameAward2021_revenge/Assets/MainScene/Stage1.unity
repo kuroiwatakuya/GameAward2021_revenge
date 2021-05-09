@@ -1014,6 +1014,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 50, y: 30, z: 0}
+--- !u!1 &762497265 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6971622131120283000, guid: 883eb377ab3fdac46a3dca09ebab13ea,
+    type: 3}
+  m_PrefabInstance: {fileID: 2008183134}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &790459067
 GameObject:
   m_ObjectHideFlags: 0
@@ -1682,6 +1688,12 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1417387672}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1423353779 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6971622132468370479, guid: 883eb377ab3fdac46a3dca09ebab13ea,
+    type: 3}
+  m_PrefabInstance: {fileID: 2008183134}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1500061764
 GameObject:
   m_ObjectHideFlags: 0
@@ -2058,7 +2070,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 2008183134}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1423353779}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
@@ -2107,6 +2119,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TurnManager: {fileID: 1869421252}
+  TopTurnObj: {fileID: 762497265}
+  UnderTurnObj: {fileID: 1423353779}
   MaxTurn: {fileID: 1638246604}
   TopTurn: {fileID: 1905431018}
   UnderTurn: {fileID: 1781845190}
@@ -2133,7 +2147,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 2008183134}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 762497265}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
