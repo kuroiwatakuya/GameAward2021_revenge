@@ -19,6 +19,10 @@ public class player : MonoBehaviour
     private float Distance = 0.6f;                              //RayÇÃí∑Ç≥
     private Vector3 Cameraforward;
 
+    [SerializeField]GameObject gameManager;
+    private TurnManager turnManager;
+    private bool isActive=false;
+
 
 
     public enum StatePattern //èÛë‘
@@ -33,8 +37,9 @@ public class player : MonoBehaviour
     void Start()
     {
         PlayerPos = GetComponent<Transform>().position;
-        m_State = StatePattern.Idle;
         rig = GetComponent<Rigidbody>();
+        turnManager = gameManager.GetComponent<TurnManager>();
+        m_State = StatePattern.Idle;
     }
 
     // Update is called once per frame
@@ -52,41 +57,51 @@ public class player : MonoBehaviour
 
         }
 
-        //Debug.Log(m_State.ToString());
         rayPosition = transform.position;
         ray = new Ray(rayPosition, transform.forward);
         Debug.DrawRay(ray.origin, ray.direction * Distance, Color.red); // ÉåÉCÇê‘êFÇ≈ï\é¶Ç≥ÇπÇÈ
-        //Debug.Log(hit.collider.gameObject.name);
+        int invertcount = turnManager.GetInvertCount();
 
-        Debug.Log(m_State.ToString());
-
+        Debug.Log(turnManager.GetInvertCount());
+        if (invertcount <= 0)
+        {
+            isActive = true;
+        }
+        if (isActive)
+        {
+            Vector3 pos = transform.position;
+            pos.y = pos.y * -1 + 3.0f;
+            transform.position = pos;
+            turnManager.ChangeEnvironment();
+            turnManager.ResetInvertCount();
+            isActive = false;
+        }
     }
 
     private void Idle()
     {
 
-        Cameraforward = Vector3.Scale(Camera.main.transform.forward, new Vector3(1, 0, 1)).normalized;
-
-        Direction = Cameraforward * Input.GetAxisRaw("Vertical") + Camera.main.transform.right * Input.GetAxisRaw("Horizontal");
-
-        Quaternion q = Quaternion.LookRotation(Direction.normalized, Vector3.up);
-        transform.rotation = Quaternion.Lerp(transform.rotation, q, Time.deltaTime * AngleSpeed);
-
-        float rad=Mathf.Pow(Mathf.Max(0, Vector3.Dot(transform.forward, Direction)), Power);
-        Speed = MoveSpeed * rad;
-
-
-
-
-        if (Mathf.Abs(Input.GetAxisRaw("Horizontal")) == 1 && Input.GetAxisRaw("Vertical") == 0 && rad >= 1.0f)
+        if (!isActive)
         {
-            m_State = StatePattern.Walk;
-        }
-        if (Input.GetAxisRaw("Horizontal") == 0 && Mathf.Abs(Input.GetAxisRaw("Vertical")) == 1 && rad >=1.0f)
-        {
-            m_State = StatePattern.Walk;
-        }
+            Cameraforward = Vector3.Scale(Camera.main.transform.forward, new Vector3(1, 0, 1)).normalized;
 
+            Direction = Cameraforward * Input.GetAxisRaw("Vertical") + Camera.main.transform.right * Input.GetAxisRaw("Horizontal");
+
+            Quaternion q = Quaternion.LookRotation(Direction.normalized, Vector3.up);
+            transform.rotation = Quaternion.Lerp(transform.rotation, q, Time.deltaTime * AngleSpeed);
+
+            float rad = Mathf.Pow(Mathf.Max(0, Vector3.Dot(transform.forward, Direction)), Power);
+            Speed = MoveSpeed * rad;
+
+            if (Mathf.Abs(Input.GetAxisRaw("Horizontal")) == 1 && Input.GetAxisRaw("Vertical") == 0 && rad >= 1.0f)
+            {
+                m_State = StatePattern.Walk;
+            }
+            if (Input.GetAxisRaw("Horizontal") == 0 && Mathf.Abs(Input.GetAxisRaw("Vertical")) == 1 && rad >= 1.0f)
+            {
+                m_State = StatePattern.Walk;
+            }
+        }
     }
 
     private void Walk()
@@ -97,8 +112,10 @@ public class player : MonoBehaviour
         {
             if (hit.collider.CompareTag("Wall"))
             {
-                
                 m_State = StatePattern.Idle;
+                turnManager.ReduceTrunCount(1);
+                turnManager.ReduceInvertTrunCount(1);
+                Debug.Log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
             }
         }
 
