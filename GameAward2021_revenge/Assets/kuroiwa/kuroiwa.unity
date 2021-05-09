@@ -536,8 +536,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ad9ee0b3b5b82a439d4690d01395381, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  InvertCount: 0
-  Environment: 0
 --- !u!114 &834582559
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -551,6 +549,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TurnManager: {fileID: 834582554}
+  TopTurnObj: {fileID: 352085978}
+  UnderTurnObj: {fileID: 1733703309}
   MaxTurn: {fileID: 35845572}
   TopTurn: {fileID: 352085980}
   UnderTurn: {fileID: 1733703311}
