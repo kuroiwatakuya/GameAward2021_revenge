@@ -44,6 +44,9 @@ public class TurnManager : MonoBehaviour
     //Add～(int a)関数
     //　　　変数にaを加算
     //
+    //Reduce～(int a)関数
+    //　　　変数にaを減算
+    //
     //Get～()関数
     //　　　変数を取得
     //
