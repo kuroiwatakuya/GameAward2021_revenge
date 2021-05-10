@@ -3,7 +3,8 @@ using UnityEngine;
 public class CameraScript : MonoBehaviour
 {
     [SerializeField]
-    private GameObject m_Field;  //視点(フィールドの真ん中)
+    private GameObject m_Field1;  //視点(フィールドの真ん中)
+    [SerializeField] private GameObject m_Field2;  //視点(フィールドの真ん中)
     [SerializeField]
     private float m_Speed = 3;
 
@@ -12,6 +13,9 @@ public class CameraScript : MonoBehaviour
     [SerializeField]  private float m_Blend;
 
     Vector3 m_StartPosition, m_GoalPosition,m_InitPosition; //移動の始めと終わり
+
+    [SerializeField] GameObject m_GameManager;
+    TurnManager m_TurnManager;
 
     enum PositionNum
     {
@@ -35,6 +39,8 @@ public class CameraScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        m_TurnManager = m_GameManager.GetComponent<TurnManager>();
+
         m_InitPosition = this.transform.position;
         m_StartPosition = m_InitPosition;
         m_Direction = Direction.NONE;
@@ -46,7 +52,20 @@ public class CameraScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(!m_RotFlag)
+        Vector3 pos = this.transform.position;
+        if (m_TurnManager.GetEnvironment() == 1)
+        {
+            pos.y = 35;
+            this.gameObject.transform.LookAt(m_Field1.transform);
+        }
+        else
+        {
+            pos.y = -5;
+            this.gameObject.transform.LookAt(m_Field2.transform);
+        }
+        this.transform.position = pos;
+
+        if (!m_RotFlag)
         {
             if (Input.GetKeyDown("joystick button 4"))
             {
@@ -63,7 +82,7 @@ public class CameraScript : MonoBehaviour
 
     private void FixedUpdate()
     {
-        this.gameObject.transform.LookAt(m_Field.transform);
+        
 
         Vector3 Pos = this.transform.position;
 
