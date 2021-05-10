@@ -23,6 +23,12 @@ public class player : MonoBehaviour
     private TurnManager turnManager;
     private bool isActive=false;
 
+    //ÉJÉÅÉâÇäiî[Ç∑ÇÈïœêî
+    private GameObject m_MainCameraObject;
+    private GameObject m_UnderCameraObject;
+    private Camera m_MainCamera;
+    private Camera m_UnderCamera;
+
 
 
     public enum StatePattern //èÛë‘
@@ -40,6 +46,12 @@ public class player : MonoBehaviour
         rig = GetComponent<Rigidbody>();
         gameManager = GameObject.FindWithTag("GameManager");
         turnManager = gameManager.GetComponent<TurnManager>();
+
+        m_MainCameraObject = GameObject.FindWithTag("MainCamera");
+        m_UnderCameraObject = GameObject.FindWithTag("UnderCamera");
+        m_MainCamera = m_MainCameraObject.GetComponent<Camera>();
+        m_UnderCamera = m_UnderCameraObject.GetComponent<Camera>();
+
         m_State = StatePattern.Idle;
     }
 
@@ -84,9 +96,16 @@ public class player : MonoBehaviour
 
         if (!isActive)
         {
-            Cameraforward = Vector3.Scale(Camera.main.transform.forward, new Vector3(1, 0, 1)).normalized;
-
-            Direction = Cameraforward * Input.GetAxisRaw("Vertical") + Camera.main.transform.right * Input.GetAxisRaw("Horizontal");
+            if(turnManager.GetEnvironment() == 1)
+            {
+                Cameraforward = Vector3.Scale(m_MainCamera.transform.forward, new Vector3(1, 0, 1)).normalized;
+                Direction = Cameraforward * Input.GetAxisRaw("Vertical") + m_MainCamera.transform.right * Input.GetAxisRaw("Horizontal");
+            }
+            else
+            {
+                Cameraforward = Vector3.Scale(m_UnderCamera.transform.forward, new Vector3(1, 0, 1)).normalized;
+                Direction = Cameraforward * Input.GetAxisRaw("Vertical") + m_UnderCamera.transform.right * Input.GetAxisRaw("Horizontal");
+            }
 
             Quaternion q = Quaternion.LookRotation(Direction.normalized, Vector3.up);
             transform.rotation = Quaternion.Lerp(transform.rotation, q, Time.deltaTime * AngleSpeed);

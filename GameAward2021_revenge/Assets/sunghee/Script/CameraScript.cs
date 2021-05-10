@@ -3,8 +3,7 @@ using UnityEngine;
 public class CameraScript : MonoBehaviour
 {
     [SerializeField]
-    private GameObject m_Field1;  //視点(フィールドの真ん中)
-    [SerializeField] private GameObject m_Field2;  //視点(フィールドの真ん中)
+    private GameObject m_Field;  //視点(フィールドの真ん中)
     [SerializeField]
     private float m_Speed = 3;
 
@@ -53,19 +52,6 @@ public class CameraScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector3 pos = this.transform.position;
-        if (m_TurnManager.GetEnvironment() == 1)
-        {
-            pos.y = 35;
-
-            this.gameObject.transform.LookAt(m_Field1.transform);
-        }
-        else
-        {
-            pos.y = -5;
-            this.gameObject.transform.LookAt(m_Field2.transform);
-        }
-        this.transform.position = pos;
 
         if (!m_RotFlag)
         {
@@ -87,6 +73,8 @@ public class CameraScript : MonoBehaviour
         
 
         Vector3 Pos = this.transform.position;
+
+        this.gameObject.transform.LookAt(m_Field.transform);
 
         if (m_Direction == Direction.LEFT)
         {
