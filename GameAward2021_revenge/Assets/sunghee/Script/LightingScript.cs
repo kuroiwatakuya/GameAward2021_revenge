@@ -7,8 +7,8 @@ using UnityEngine.Rendering;
 public class LightingScript : MonoBehaviour
 {
 
-    [SerializeField] GameObject m_GameManager;
-    TurnManager m_TurnManager;
+    private GameObject m_GameManager;
+    private TurnManager m_TurnManager;
 
     // Start is called before the first frame update
     void Start()
@@ -16,6 +16,7 @@ public class LightingScript : MonoBehaviour
         RenderSettings.ambientIntensity = 1.0f;
         RenderSettings.reflectionIntensity = 1.0f;
 
+        m_GameManager = GameObject.FindWithTag("GameManager");
         m_TurnManager = m_GameManager.GetComponent<TurnManager>();
     }
 

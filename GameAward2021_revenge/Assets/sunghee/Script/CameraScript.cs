@@ -14,7 +14,7 @@ public class CameraScript : MonoBehaviour
 
     Vector3 m_StartPosition, m_GoalPosition,m_InitPosition; //à⁄ìÆÇÃénÇﬂÇ∆èIÇÌÇË
 
-    [SerializeField] GameObject m_GameManager;
+    private GameObject m_GameManager;
     TurnManager m_TurnManager;
 
     enum PositionNum
@@ -39,6 +39,7 @@ public class CameraScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        m_GameManager = GameObject.FindWithTag("GameManager");
         m_TurnManager = m_GameManager.GetComponent<TurnManager>();
 
         m_InitPosition = this.transform.position;
@@ -56,6 +57,7 @@ public class CameraScript : MonoBehaviour
         if (m_TurnManager.GetEnvironment() == 1)
         {
             pos.y = 35;
+
             this.gameObject.transform.LookAt(m_Field1.transform);
         }
         else
@@ -90,19 +92,19 @@ public class CameraScript : MonoBehaviour
         {
             if (m_PositionNum == PositionNum.Pos0)
             {
-                m_GoalPosition = new Vector3(m_InitPosition.z, m_InitPosition.y, 0);
+                m_GoalPosition = new Vector3(m_InitPosition.z, transform.position.y, 0);
             }
             else if (m_PositionNum == PositionNum.Pos1)
             {
-                m_GoalPosition = new Vector3(m_InitPosition.x, m_InitPosition.y, m_InitPosition.z);
+                m_GoalPosition = new Vector3(m_InitPosition.x, transform.position.y, m_InitPosition.z);
             }
             else if (m_PositionNum == PositionNum.Pos2)
             {
-                m_GoalPosition = new Vector3(m_InitPosition.z * -1, m_InitPosition.y, 0);
+                m_GoalPosition = new Vector3(m_InitPosition.z * -1, transform.position.y, 0);
             }
             else if (m_PositionNum == PositionNum.Pos3)
             {
-                m_GoalPosition = new Vector3(m_InitPosition.x, m_InitPosition.y, m_InitPosition.z * -1);
+                m_GoalPosition = new Vector3(m_InitPosition.x, transform.position.y, m_InitPosition.z * -1);
             }
 
             Pos = Vector3.Lerp(m_StartPosition, m_GoalPosition, m_Blend);
@@ -141,19 +143,19 @@ public class CameraScript : MonoBehaviour
         {
             if (m_PositionNum == PositionNum.Pos0)
             {
-                m_GoalPosition = new Vector3(m_InitPosition.z * -1, m_InitPosition.y, 0);
+                m_GoalPosition = new Vector3(m_InitPosition.z * -1, transform.position.y, 0);
             }
             else if (m_PositionNum == PositionNum.Pos1)
             {
-                m_GoalPosition = new Vector3(m_InitPosition.x, m_InitPosition.y, m_InitPosition.z * -1);
+                m_GoalPosition = new Vector3(m_InitPosition.x, transform.position.y, m_InitPosition.z * -1);
             }
             else if (m_PositionNum == PositionNum.Pos2)
             {
-                m_GoalPosition = new Vector3(m_InitPosition.z, m_InitPosition.y, 0);
+                m_GoalPosition = new Vector3(m_InitPosition.z, transform.position.y, 0);
             }
             else if (m_PositionNum == PositionNum.Pos3)
             {
-                m_GoalPosition = new Vector3(m_InitPosition.x, m_InitPosition.y, m_InitPosition.z);
+                m_GoalPosition = new Vector3(m_InitPosition.x, transform.position.y, m_InitPosition.z);
             }
 
             Pos = Vector3.Lerp(m_StartPosition, m_GoalPosition, m_Blend);

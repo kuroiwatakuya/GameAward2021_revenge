@@ -9,7 +9,7 @@ using UnityEngine.UI;
 //================================
 public class Turn : MonoBehaviour
 {
-    public GameObject TurnManager;      //ターンマネージャー格納
+    private GameObject TurnManager;      //ターンマネージャー格納
     private TurnManager TurnMng;         //ターンマネージャーのスクリプト受け取り
 
     public Text TurnText;                        //最大ターン数表示
@@ -21,6 +21,7 @@ public class Turn : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        TurnManager = GameObject.FindWithTag("GameManager");
         TurnMng = TurnManager.gameObject.GetComponent<TurnManager>();           //ターンマネージャースクリプトの格納
 
         //数値格納
