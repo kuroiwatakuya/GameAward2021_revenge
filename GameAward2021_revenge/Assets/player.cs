@@ -19,7 +19,7 @@ public class player : MonoBehaviour
     private float Distance = 0.6f;                              //Ray‚Ì’·‚³
     private Vector3 Cameraforward;
 
-    [SerializeField]GameObject gameManager;
+    private GameObject gameManager;
     private TurnManager turnManager;
     private bool isActive=false;
 
@@ -38,6 +38,7 @@ public class player : MonoBehaviour
     {
         PlayerPos = GetComponent<Transform>().position;
         rig = GetComponent<Rigidbody>();
+        gameManager = GameObject.FindWithTag("GameManager");
         turnManager = gameManager.GetComponent<TurnManager>();
         m_State = StatePattern.Idle;
     }

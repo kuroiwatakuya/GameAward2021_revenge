@@ -78,7 +78,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: MaxTurn
+  m_Text: Turn
 --- !u!1 &6971622131120283000
 GameObject:
   m_ObjectHideFlags: 0
@@ -157,7 +157,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: TopTurn
+  m_Text: InvertTurn
 --- !u!1 &6971622131805869836
 GameObject:
   m_ObjectHideFlags: 0
