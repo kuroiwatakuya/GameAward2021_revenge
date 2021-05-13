@@ -29,6 +29,9 @@ public class player : MonoBehaviour
     private Camera m_MainCamera;
     private Camera m_UnderCamera;
 
+    //ÉâÉCÉg
+    private Light m_PlayerLight;
+    [SerializeField] private float m_LightUp = 10;
 
 
     public enum StatePattern //èÛë‘
@@ -51,6 +54,8 @@ public class player : MonoBehaviour
         m_UnderCameraObject = GameObject.FindWithTag("UnderCamera");
         m_MainCamera = m_MainCameraObject.GetComponent<Camera>();
         m_UnderCamera = m_UnderCameraObject.GetComponent<Camera>();
+
+        m_PlayerLight = GetComponentInChildren<Light>();
 
         m_State = StatePattern.Idle;
     }
@@ -141,6 +146,17 @@ public class player : MonoBehaviour
             {
                 Destroy(hit.collider.gameObject);
                 turnManager.AddTurnCount(1);
+            }
+
+            if (hit.collider.CompareTag("LightUp"))
+            {
+                Destroy(hit.collider.gameObject);
+                m_PlayerLight.range += m_LightUp;
+            }
+
+            if (hit.collider.CompareTag("ArmorEnemyAttack"))
+            {
+                turnManager.AddTurnCount(-2);
             }
         }
 
