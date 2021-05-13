@@ -3,7 +3,17 @@ guid: 33a7a51481535274592fd71caa96e0f3
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: tree_pack03_batu_iro_01
+    second: {fileID: 2100000, guid: 6e9bca247e9514548912e6d52cc07680, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: tree_pack_iro_03
+    second: {fileID: 2100000, guid: 41f5b5c9fabd1a548979703593b38e2a, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
