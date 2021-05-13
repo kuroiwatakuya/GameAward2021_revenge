@@ -10,9 +10,6 @@ public class CameraChange : MonoBehaviour
     private Camera m_MainCamera;
     private Camera m_UnderCamera;
 
-    [SerializeField]
-    private GameObject Canvas;
-
     private GameObject m_GameManager;
     private TurnManager m_TurnManager;
 

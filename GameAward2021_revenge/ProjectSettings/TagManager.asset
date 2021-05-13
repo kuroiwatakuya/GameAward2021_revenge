@@ -8,6 +8,9 @@ TagManager:
   - BreakWall
   - HealItem
   - GameManager
+  - UnderCamera
+  - LightUp
+  - ArmorEnemyAttack
   layers:
   - Default
   - TransparentFX
