@@ -3,7 +3,12 @@ guid: 54af68e18766d42479656dc32bcfeacd
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: tombs_iro_07
+    second: {fileID: 2100000, guid: 41ddef584ef239242bcdeead30aa13a7, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

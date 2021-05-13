@@ -7,17 +7,22 @@ public class ArmorEnemy : MonoBehaviour
     private Animator m_Animator;
     private float m_Time = 0;
 
+    private GameObject gameManager;
+    private TurnManager turnManager;
+
     // Start is called before the first frame update
     void Start()
     {
         m_Animator = GetComponentInChildren<Animator>();
+
+        gameManager = GameObject.FindWithTag("GameManager");
+        turnManager = gameManager.GetComponent<TurnManager>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        m_Time += Time.deltaTime;
-        if(m_Time <= 3)
+        if(turnManager.GetTurnCount() % 2 == 0)
         {
             m_Animator.SetBool("ArmorEnemyAttack", false);
         }
