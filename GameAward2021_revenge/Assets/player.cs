@@ -163,6 +163,13 @@ public class player : MonoBehaviour
             {
                 turnManager.AddTurnCount(-2);
             }
+            if (hit.collider.CompareTag("BreakWall"))
+            {
+
+                m_State = StatePattern.Idle;
+                turnManager.AddTurnCount(-1);
+                Destroy(hit.collider.gameObject);
+            }
         }
 
     }
