@@ -9,6 +9,7 @@ public class player : MonoBehaviour
     [SerializeField] private float AngleSpeed;           //回転速度
     [SerializeField] private float MoveSpeed;
     private float Speed;
+    [SerializeField]private float MaxSpeed=1;
     private float Power = 3.0f;
     private Vector3 PlayerPos;                                  //プレイヤーのポジション
     private Vector3 Direction;
@@ -96,6 +97,19 @@ public class player : MonoBehaviour
         }
     }
 
+    private void FixedUpdate()
+    {
+        if (m_State == StatePattern.Walk)
+        {
+            //プレイヤーの加速制限
+            if (rig.velocity.magnitude < MaxSpeed)
+            {
+                rig.velocity += Direction * Speed;
+
+            }
+        }
+    }
+
     private void Idle()
     {
 
@@ -112,15 +126,17 @@ public class player : MonoBehaviour
                 Direction = Cameraforward * Input.GetAxisRaw("Vertical") + m_UnderCamera.transform.right * Input.GetAxisRaw("Horizontal");
             }
 
+
+            //プレイヤーの回転角度を計算
             Quaternion q = Quaternion.LookRotation(Direction.normalized, Vector3.up);
             transform.rotation = Quaternion.Lerp(transform.rotation, q, Time.deltaTime * AngleSpeed);
 
             float rad = Mathf.Pow(Mathf.Max(0, Vector3.Dot(transform.forward, Direction)), Power);
             Speed = MoveSpeed * rad;
 
-            if (!Physics.Raycast(ray, out hit, Distance))
+            if (!Physics.Raycast(ray, out hit, 1.0f))
             {
-
+                transform.position += Vector3.zero;
                 if (Mathf.Abs(Input.GetAxisRaw("Horizontal")) == 1 && Input.GetAxisRaw("Vertical") == 0 && rad >= 1.0f)
                 {
                     m_State = StatePattern.Walk;
@@ -136,8 +152,7 @@ public class player : MonoBehaviour
 
     private void Walk()
     {
-        transform.position += Time.deltaTime * Direction * Speed;
-
+        //当たったときのプログラム類
         if (Physics.Raycast(ray, out hit, Distance))
         {
             if (hit.collider.CompareTag("Wall"))
