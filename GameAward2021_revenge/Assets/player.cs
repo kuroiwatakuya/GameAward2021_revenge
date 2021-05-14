@@ -143,6 +143,7 @@ public class player : MonoBehaviour
             if (hit.collider.CompareTag("Wall"))
             {
                 m_State = StatePattern.Idle;
+                turnManager.AddGimmickTurnCount(1);
                 turnManager.ReduceTrunCount(1);
                 turnManager.ReduceInvertTrunCount(1);
             }
@@ -161,7 +162,7 @@ public class player : MonoBehaviour
 
             if (hit.collider.CompareTag("ArmorEnemyAttack"))
             {
-                turnManager.AddTurnCount(-2);
+                turnManager.ReduceTrunCount(1);
             }
         }
 

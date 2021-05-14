@@ -21,7 +21,7 @@ public class Door : MonoBehaviour
     void Update()
     {
 
-        if (turnManager.GetTurnCount() % 2 == 0)
+        if (turnManager.GetGimmickTurnCount() % 2 == 0)
         {
             animator.SetBool("isActive", true);
         }
