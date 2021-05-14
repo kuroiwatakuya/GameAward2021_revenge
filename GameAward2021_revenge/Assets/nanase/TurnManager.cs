@@ -7,6 +7,7 @@ public class TurnManager : MonoBehaviour
     [SerializeField]private int MaxTurn;//ターン上限
     [SerializeField] private int MaxInvertCount;//表裏変換ターン数上限
     [SerializeField] private int TurnCount;//現在のターン数
+    private int GimmickTurnCount;//ギミック用ターン数(内部のみ)
     private int InvertCount;//表裏変換のターン数
     private int Environment;//表裏判定　1が表　-1が裏
 
@@ -16,6 +17,7 @@ public class TurnManager : MonoBehaviour
         TurnCount = MaxTurn;
         InvertCount = MaxInvertCount;
         Environment = 1;
+        GimmickTurnCount = 0;
     }
 
     // Update is called once per frame
@@ -83,6 +85,17 @@ public class TurnManager : MonoBehaviour
     public int GetTurnCount()
     {
         return TurnCount;
+    }
+
+    //ギミック用ターン数
+    public void AddGimmickTurnCount(int a)
+    {
+        GimmickTurnCount += a;
+    }
+
+    public int GetGimmickTurnCount()
+    {
+        return GimmickTurnCount;
     }
 
     //表裏変換ターン数

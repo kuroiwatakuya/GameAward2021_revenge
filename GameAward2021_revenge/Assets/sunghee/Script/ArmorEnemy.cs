@@ -27,7 +27,7 @@ public class ArmorEnemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(turnManager.GetTurnCount() % 2 == 0)
+        if(turnManager.GetGimmickTurnCount() % 2 == 0)
         {
             m_Animator.SetBool("ArmorEnemyAttack", false);
             m_AttackObject.SetActive(false);
