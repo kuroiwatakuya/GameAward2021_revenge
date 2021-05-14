@@ -21,7 +21,7 @@ public class player : MonoBehaviour
 
     private GameObject gameManager;
     private TurnManager turnManager;
-    private bool isActive=false;
+    private bool isActive = false;
 
     //ƒJƒƒ‰‚ðŠi”[‚·‚é•Ï”
     private GameObject m_MainCameraObject;
@@ -101,7 +101,7 @@ public class player : MonoBehaviour
 
         if (!isActive)
         {
-            if(turnManager.GetEnvironment() == 1)
+            if (turnManager.GetEnvironment() == 1)
             {
                 Cameraforward = Vector3.Scale(m_MainCamera.transform.forward, new Vector3(1, 0, 1)).normalized;
                 Direction = Cameraforward * Input.GetAxisRaw("Vertical") + m_MainCamera.transform.right * Input.GetAxisRaw("Horizontal");
@@ -118,20 +118,25 @@ public class player : MonoBehaviour
             float rad = Mathf.Pow(Mathf.Max(0, Vector3.Dot(transform.forward, Direction)), Power);
             Speed = MoveSpeed * rad;
 
-            if (Mathf.Abs(Input.GetAxisRaw("Horizontal")) == 1 && Input.GetAxisRaw("Vertical") == 0 && rad >= 1.0f)
+            if (!Physics.Raycast(ray, out hit, Distance))
             {
-                m_State = StatePattern.Walk;
+
+                if (Mathf.Abs(Input.GetAxisRaw("Horizontal")) == 1 && Input.GetAxisRaw("Vertical") == 0 && rad >= 1.0f)
+                {
+                    m_State = StatePattern.Walk;
+                }
+                if (Input.GetAxisRaw("Horizontal") == 0 && Mathf.Abs(Input.GetAxisRaw("Vertical")) == 1 && rad >= 1.0f)
+                {
+                    m_State = StatePattern.Walk;
+                }
             }
-            if (Input.GetAxisRaw("Horizontal") == 0 && Mathf.Abs(Input.GetAxisRaw("Vertical")) == 1 && rad >= 1.0f)
-            {
-                m_State = StatePattern.Walk;
-            }
+
         }
     }
 
     private void Walk()
     {
-        transform.position += Time.deltaTime * Direction *Speed;
+        transform.position += Time.deltaTime * Direction * Speed;
 
         if (Physics.Raycast(ray, out hit, Distance))
         {
