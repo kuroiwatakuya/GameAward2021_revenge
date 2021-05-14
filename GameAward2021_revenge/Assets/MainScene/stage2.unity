@@ -234,6 +234,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4617620692532208770, guid: e81ecca187814a74d902aaf0e9a1bc03,
         type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4617620692532208770, guid: e81ecca187814a74d902aaf0e9a1bc03,
+        type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
@@ -951,6 +956,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ArmorEnemy (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4617620692532208770, guid: e81ecca187814a74d902aaf0e9a1bc03,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4617620692532208770, guid: e81ecca187814a74d902aaf0e9a1bc03,
         type: 3}
@@ -1726,6 +1736,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ArmorEnemy (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4617620692532208770, guid: e81ecca187814a74d902aaf0e9a1bc03,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4617620692532208770, guid: e81ecca187814a74d902aaf0e9a1bc03,
         type: 3}
@@ -3296,6 +3311,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ArmorEnemy (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4617620692532208770, guid: e81ecca187814a74d902aaf0e9a1bc03,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4617620692532208770, guid: e81ecca187814a74d902aaf0e9a1bc03,
         type: 3}
@@ -5381,6 +5401,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ArmorEnemy (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4617620692532208770, guid: e81ecca187814a74d902aaf0e9a1bc03,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4617620692532208770, guid: e81ecca187814a74d902aaf0e9a1bc03,
         type: 3}
