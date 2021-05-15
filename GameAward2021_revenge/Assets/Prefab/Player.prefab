@@ -49,6 +49,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AngleSpeed: 80
   MoveSpeed: 10
+  MaxSpeed: 20
   m_LightUp: 10
 --- !u!54 &677567888202258442
 Rigidbody:

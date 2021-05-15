@@ -11,6 +11,8 @@ TagManager:
   - UnderCamera
   - LightUp
   - ArmorEnemyAttack
+  - SpeedDownWall
+  - Hole
   layers:
   - Default
   - TransparentFX
