@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+using UnityEngine.SceneManagement;
 public class player : MonoBehaviour
 {
     private Rigidbody rig;                                      //RigidbodyŽæ“¾—p
@@ -157,10 +158,7 @@ public class player : MonoBehaviour
         {
             if (hit.collider.CompareTag("Wall"))
             {
-                m_State = StatePattern.Idle;
-                turnManager.AddGimmickTurnCount(1);
-                turnManager.ReduceTrunCount(1);
-                turnManager.ReduceInvertTrunCount(1);
+                TurnReset();
             }
 
             if (hit.collider.CompareTag("HealItem"))
@@ -179,14 +177,34 @@ public class player : MonoBehaviour
             {
                 turnManager.ReduceTrunCount(1);
             }
+
             if (hit.collider.CompareTag("BreakWall"))
             {
 
-                m_State = StatePattern.Idle;
-                turnManager.AddTurnCount(-1);
+                TurnReset();
                 Destroy(hit.collider.gameObject);
             }
+
+            if (hit.collider.CompareTag("SpeedDownWall"))
+            {
+                TurnReset();
+                hit.collider.gameObject.SetActive(false);
+            }
+
+            if (hit.collider.CompareTag("Hole"))
+            {
+                SceneManager.LoadScene("GameOver");
+            }
+
         }
 
+    }
+
+    private void TurnReset()
+    {
+        m_State = StatePattern.Idle;
+        turnManager.AddGimmickTurnCount(1);
+        turnManager.ReduceTrunCount(1);
+        turnManager.ReduceInvertTrunCount(1);
     }
 }
