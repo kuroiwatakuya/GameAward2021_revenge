@@ -172,12 +172,6 @@ public class player : MonoBehaviour
                 Destroy(hit.collider.gameObject);
                 m_PlayerLight.range += m_LightUp;
             }
-
-            if (hit.collider.CompareTag("ArmorEnemyAttack"))
-            {
-                turnManager.ReduceTrunCount(1);
-            }
-
             if (hit.collider.CompareTag("BreakWall"))
             {
 
@@ -206,5 +200,13 @@ public class player : MonoBehaviour
         turnManager.AddGimmickTurnCount(1);
         turnManager.ReduceTrunCount(1);
         turnManager.ReduceInvertTrunCount(1);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.CompareTag("ArmorEnemyAttack"))
+        {
+            turnManager.ReduceTrunCount(1);
+        }
     }
 }
