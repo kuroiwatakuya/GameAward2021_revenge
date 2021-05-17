@@ -10,7 +10,6 @@ public class player : MonoBehaviour
     [SerializeField] private float AngleSpeed;           //回転速度
     [SerializeField] private float MoveSpeed;
     private float Speed;
-    [SerializeField]private float MaxSpeed=1;
     private float Power = 3.0f;
     private Vector3 PlayerPos;                                  //プレイヤーのポジション
     private Vector3 Direction;
@@ -103,11 +102,10 @@ public class player : MonoBehaviour
         if (m_State == StatePattern.Walk)
         {
             //プレイヤーの加速制限
-            if (rig.velocity.magnitude < MaxSpeed)
-            {
-                transform.position += Direction * Speed;
 
-            }
+            rig.velocity = Direction * Speed;
+
+
         }
     }
 
@@ -204,7 +202,7 @@ public class player : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.CompareTag("ArmorEnemyAttack"))
+        if (other.gameObject.CompareTag("ArmorEnemyAttack"))
         {
             turnManager.ReduceTrunCount(1);
         }
