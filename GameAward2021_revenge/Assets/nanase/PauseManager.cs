@@ -75,6 +75,7 @@ public class PauseManager : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown("joystick button 0"))
             {
                 Debug.Log("Œˆ’è");
+                Time.timeScale = 1f;
                 ChangeScene();
             }
         }
@@ -102,7 +103,6 @@ public class PauseManager : MonoBehaviour
                 SceneManager.LoadScene("Select");
                 break;
             case (int)SceneNum.ReStart:
-                Time.timeScale = 1f;
                 // Œ»İ‚ÌScene–¼‚ğæ“¾‚·‚é
                 Scene loadScene = SceneManager.GetActiveScene();
                 // Scene‚Ì“Ç‚İ’¼‚µ
