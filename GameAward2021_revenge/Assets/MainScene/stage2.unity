@@ -313,6 +313,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6060555830799485406, guid: 883eb377ab3fdac46a3dca09ebab13ea,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6971622130948738918, guid: 883eb377ab3fdac46a3dca09ebab13ea,
         type: 3}
       propertyPath: m_Text
@@ -435,6 +440,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 883eb377ab3fdac46a3dca09ebab13ea, type: 3}
+--- !u!1 &84662912 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3726144889202779622, guid: 883eb377ab3fdac46a3dca09ebab13ea,
+    type: 3}
+  m_PrefabInstance: {fileID: 84662911}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &84662913 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6971622131120283006, guid: 883eb377ab3fdac46a3dca09ebab13ea,
@@ -9658,6 +9669,11 @@ PrefabInstance:
       propertyPath: Canvas
       value: 
       objectReference: {fileID: 276730071}
+    - target: {fileID: 7031435023558662508, guid: 1427ba55651739d4aae641764362e384,
+        type: 3}
+      propertyPath: pauseUI
+      value: 
+      objectReference: {fileID: 84662912}
     - target: {fileID: 9104150049676953128, guid: 1427ba55651739d4aae641764362e384,
         type: 3}
       propertyPath: m_Name
