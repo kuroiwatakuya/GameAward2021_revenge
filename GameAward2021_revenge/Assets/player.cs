@@ -204,7 +204,8 @@ public class player : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.CompareTag("ArmorEnemyAttack")){
+        if(other.gameObject.CompareTag("ArmorEnemyAttack"))
+        {
             turnManager.ReduceTrunCount(1);
         }
     }
