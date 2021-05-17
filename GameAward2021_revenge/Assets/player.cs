@@ -76,7 +76,7 @@ public class player : MonoBehaviour
 
         }
 
-        rayPosition = transform.position;
+        rayPosition = new Vector3(transform.position.x, transform.position.y - 0.5f, transform.position.z);
         ray = new Ray(rayPosition, transform.forward);
         Debug.DrawRay(ray.origin, ray.direction * Distance, Color.red); // レイを赤色で表示させる
         int invertcount = turnManager.GetInvertCount();
@@ -101,8 +101,6 @@ public class player : MonoBehaviour
     {
         if (m_State == StatePattern.Walk)
         {
-            //プレイヤーの加速制限
-
             rig.velocity = Direction * Speed;
 
 
