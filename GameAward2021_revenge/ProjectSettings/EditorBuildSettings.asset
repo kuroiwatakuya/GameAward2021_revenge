@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/SampleScene.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   - enabled: 1
+    path: Assets/MainScene/Title.unity
+    guid: 86118ed8377e601469b245a8d4c0a7ef
+  - enabled: 1
     path: Assets/MainScene/ClearScene.unity
     guid: 2caa2351b237b4a4ab717de438ac9787
   - enabled: 1
@@ -26,9 +29,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/MainScene/stage5.unity
     guid: 6c24f560985c7c2469959c7cba2884e7
-  - enabled: 1
-    path: Assets/MainScene/Title.unity
-    guid: 86118ed8377e601469b245a8d4c0a7ef
   - enabled: 1
     path: Assets/MainScene/GameOver.unity
     guid: 417839a53703d164f865c5a3cb336bd1

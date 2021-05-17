@@ -101,7 +101,7 @@ public class player : MonoBehaviour
     {
         if (m_State == StatePattern.Walk)
         {
-            rig.velocity = Direction * Speed;
+            rig.velocity = Direction * Speed * Time.deltaTime;
 
 
         }
