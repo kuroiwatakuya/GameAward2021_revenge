@@ -14,7 +14,6 @@ public class SelectManager : MonoBehaviour
         stage_2,
         stage_3,
         stage_4,
-        stage_5,
         MAX
     }
 
@@ -28,7 +27,7 @@ public class SelectManager : MonoBehaviour
     void Update()
     {
         //選択中のステージの変更
-        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown("joystick button 4"))
         {
             Debug.Log("左");
             if (SelectingStage == (int)StageNum.stage_1)
@@ -40,7 +39,7 @@ public class SelectManager : MonoBehaviour
                 SelectingStage--;
             }
         }
-        if (Input.GetKeyDown(KeyCode.RightArrow))
+        if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown("joystick button 5"))
         {
             Debug.Log("右");
             if (SelectingStage == (int)StageNum.MAX - 1)
@@ -54,7 +53,7 @@ public class SelectManager : MonoBehaviour
         }
 
         //ステージ決定
-        if (Input.GetKeyDown(KeyCode.Return))
+        if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown("joystick button 0"))
         {
             Debug.Log("決定");
             ChangeGameScene();
@@ -82,10 +81,6 @@ public class SelectManager : MonoBehaviour
             case (int)StageNum.stage_4:
                 SceneManager.LoadScene("stage4");
                 break;
-            case (int)StageNum.stage_5:
-                SceneManager.LoadScene("stage5");
-                break;
-
             default:
                 Debug.Log("エラー");
                 break;
