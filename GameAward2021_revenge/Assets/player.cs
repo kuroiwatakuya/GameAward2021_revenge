@@ -105,7 +105,7 @@ public class player : MonoBehaviour
             //ƒvƒŒƒCƒ„[‚Ì‰Á‘¬§ŒÀ
             if (rig.velocity.magnitude < MaxSpeed)
             {
-                rig.velocity += Direction * Speed;
+                transform.position += Direction * Speed;
 
             }
         }
