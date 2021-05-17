@@ -2332,6 +2332,12 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 306510123}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &306618715 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3726144889202779622, guid: 883eb377ab3fdac46a3dca09ebab13ea,
+    type: 3}
+  m_PrefabInstance: {fileID: 1176059224}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &347355644
 GameObject:
   m_ObjectHideFlags: 0
@@ -5875,6 +5881,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4664221452948461723, guid: 924aa3c3a1920f148b7d1b09c0267037,
         type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4664221452948461723, guid: 924aa3c3a1920f148b7d1b09c0267037,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4664221452948461723, guid: 924aa3c3a1920f148b7d1b09c0267037,
+        type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.75
       objectReference: {fileID: 0}
@@ -5992,6 +6008,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 677567888202258442, guid: c13f8cd64924314488b22cfce979927c,
+        type: 3}
+      propertyPath: m_Constraints
+      value: 116
       objectReference: {fileID: 0}
     - target: {fileID: 677567888202258442, guid: c13f8cd64924314488b22cfce979927c,
         type: 3}
@@ -6668,6 +6689,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6060555830799485406, guid: 883eb377ab3fdac46a3dca09ebab13ea,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6971622131805869836, guid: 883eb377ab3fdac46a3dca09ebab13ea,
         type: 3}
       propertyPath: m_Name
@@ -6911,6 +6937,11 @@ PrefabInstance:
       propertyPath: Canvas
       value: 
       objectReference: {fileID: 2092548660}
+    - target: {fileID: 7031435023558662508, guid: 1427ba55651739d4aae641764362e384,
+        type: 3}
+      propertyPath: pauseUI
+      value: 
+      objectReference: {fileID: 306618715}
     - target: {fileID: 9104150049676953128, guid: 1427ba55651739d4aae641764362e384,
         type: 3}
       propertyPath: m_Name
