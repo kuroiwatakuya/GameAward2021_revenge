@@ -102,7 +102,11 @@ public class PauseManager : MonoBehaviour
                 SceneManager.LoadScene("Select");
                 break;
             case (int)SceneNum.ReStart:
-
+                Time.timeScale = 1f;
+                // Œ»İ‚ÌScene–¼‚ğæ“¾‚·‚é
+                Scene loadScene = SceneManager.GetActiveScene();
+                // Scene‚Ì“Ç‚İ’¼‚µ
+                SceneManager.LoadScene(loadScene.name);
                 break;
             default:
                 Debug.Log("ƒGƒ‰[");
