@@ -2572,6 +2572,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: BreakWall
       objectReference: {fileID: 0}
+    - target: {fileID: 3711492587681175815, guid: 924aa3c3a1920f148b7d1b09c0267037,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4664221452948461723, guid: 924aa3c3a1920f148b7d1b09c0267037,
         type: 3}
       propertyPath: m_RootOrder
