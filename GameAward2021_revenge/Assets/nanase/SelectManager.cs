@@ -6,10 +6,13 @@ using UnityEngine.SceneManagement;
 public class SelectManager : MonoBehaviour
 {
     private int SelectingStage = 0;//選択中ステージ
+    private GameObject gameManager;
+    private SaveManager SaveManager;
 
     //ステージ番号
     private enum StageNum
     {
+        title,
         stage_1,
         stage_2,
         stage_3,
@@ -20,7 +23,8 @@ public class SelectManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        gameManager = GameObject.FindWithTag("GameManager");
+        SaveManager = gameManager.GetComponent<SaveManager>();
     }
 
     // Update is called once per frame
@@ -29,8 +33,7 @@ public class SelectManager : MonoBehaviour
         //選択中のステージの変更
         if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown("joystick button 4"))
         {
-            Debug.Log("左");
-            if (SelectingStage == (int)StageNum.stage_1)
+            if (SelectingStage == (int)StageNum.title)
             {
                 SelectingStage = (int)StageNum.MAX - 1;
             }
@@ -41,10 +44,9 @@ public class SelectManager : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown("joystick button 5"))
         {
-            Debug.Log("右");
             if (SelectingStage == (int)StageNum.MAX - 1)
             {
-                SelectingStage = (int)StageNum.stage_1;
+                SelectingStage = (int)StageNum.title;
             }
             else
             {
@@ -55,31 +57,36 @@ public class SelectManager : MonoBehaviour
         //ステージ決定
         if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown("joystick button 0"))
         {
-            Debug.Log("決定");
             ChangeGameScene();
         }
     }
 
     public int GetSelectingStage()
     {
-        return SelectingStage + 1;
+        return SelectingStage;
     }
 
     void ChangeGameScene()
     {
         switch (SelectingStage)
         {
+            case (int)StageNum.title:
+                SceneManager.LoadScene("Title");
+                break;
             case (int)StageNum.stage_1:
                 SceneManager.LoadScene("stage1");
                 break;
             case (int)StageNum.stage_2:
-                SceneManager.LoadScene("stage2");
+                if (SaveManager.Load("Stage1") > 0)
+                    SceneManager.LoadScene("stage2");
                 break;
             case (int)StageNum.stage_3:
-                SceneManager.LoadScene("stage3");
+                if (SaveManager.Load("stage2") > 0)
+                    SceneManager.LoadScene("stage3");
                 break;
             case (int)StageNum.stage_4:
-                SceneManager.LoadScene("stage4");
+                if (SaveManager.Load("stage3") > 0)
+                    SceneManager.LoadScene("stage4");
                 break;
             default:
                 Debug.Log("エラー");

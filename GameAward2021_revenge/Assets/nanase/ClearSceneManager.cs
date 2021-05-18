@@ -5,10 +5,14 @@ using UnityEngine.SceneManagement;
 
 public class ClearSceneManager : MonoBehaviour
 {
+    private GameObject gameManager;
+    private SaveManager saveManager;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        gameManager = GameObject.FindWithTag("GameManager");
+        saveManager = gameManager.GetComponent<SaveManager>();
     }
 
     // Update is called once per frame
@@ -21,6 +25,7 @@ public class ClearSceneManager : MonoBehaviour
     {
         if (collider.gameObject.tag == "Player")
         {
+            saveManager.Save();
             SceneManager.LoadScene("ClearScene");
         }
     }

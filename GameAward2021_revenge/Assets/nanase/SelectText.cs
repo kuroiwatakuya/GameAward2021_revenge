@@ -25,7 +25,12 @@ public class SelectText : MonoBehaviour
         SelectObject = GameObject.FindWithTag("GameManager");
         SelectManagerScript = SelectObject.GetComponent<SelectManager>();
 
+
+        int num = SelectManagerScript.GetSelectingStage();
         // テキストの表示を入れ替える
-        score_text.text = "ステージ" + SelectManagerScript.GetSelectingStage();
+        if (num == 0)
+            score_text.text = "タイトル";
+        else
+            score_text.text = "ステージ" + num;
     }
 }
