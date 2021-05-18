@@ -170,7 +170,7 @@ public class player : MonoBehaviour
             }
             if (hit.collider.CompareTag("BreakWall"))
             {
-
+                rig.velocity = Vector3.zero;
                 TurnReset();
                 Destroy(hit.collider.gameObject);
             }
