@@ -677,7 +677,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 62b75053af3b6054383edc1b3e3b7b20,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 62b75053af3b6054383edc1b3e3b7b20,
         type: 3}
@@ -687,7 +687,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 62b75053af3b6054383edc1b3e3b7b20,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 62b75053af3b6054383edc1b3e3b7b20,
         type: 3}
@@ -702,7 +702,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 62b75053af3b6054383edc1b3e3b7b20,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 180
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 62b75053af3b6054383edc1b3e3b7b20,
         type: 3}
@@ -1120,6 +1120,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6060555830799485406, guid: 883eb377ab3fdac46a3dca09ebab13ea,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6971622131805869836, guid: 883eb377ab3fdac46a3dca09ebab13ea,
         type: 3}
       propertyPath: m_Name
@@ -1419,7 +1424,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AngleSpeed: 5.6
   MoveSpeed: 5
-  MaxSpeed: 1
   m_LightUp: 10
 --- !u!4 &834582557
 Transform:
