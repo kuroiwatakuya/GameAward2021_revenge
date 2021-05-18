@@ -724,7 +724,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AngleSpeed: 30
   MoveSpeed: 1
-  MaxSpeed: 1
   m_LightUp: 10
 --- !u!4 &307518631
 Transform:
@@ -2376,6 +2375,21 @@ MonoBehaviour:
   speed: 1
   isFade: 0
   Panel: {fileID: 1120126439}
+--- !u!114 &1713468774
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1713468772}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5557f68d8038c0a4b9881e54cffa13f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isLoad: 1
+  isSave: 0
+  isDelete: 0
 --- !u!114 &1713468781
 MonoBehaviour:
   m_ObjectHideFlags: 0
