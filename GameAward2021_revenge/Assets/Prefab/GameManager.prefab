@@ -9,12 +9,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9104150049676953140}
-  - component: {fileID: 9104150049676953141}
-  - component: {fileID: 9104150049676953142}
   - component: {fileID: 9104150049676953143}
   - component: {fileID: 6163389501005762997}
   - component: {fileID: 198586021509354598}
   - component: {fileID: 7031435023558662508}
+  - component: {fileID: 5192642633338000448}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: GameManager
@@ -36,35 +35,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &9104150049676953141
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9104150049676953128}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4fe5db51ef747bc418138923a9b0607d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  TurnText: {fileID: 0}
-  InvertTurn: {fileID: 0}
---- !u!114 &9104150049676953142
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9104150049676953128}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9ad9ee0b3b5b82a439d4690d01395381, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MaxTurn: 30
-  MaxInvertCount: 3
-  TurnCount: 0
 --- !u!114 &9104150049676953143
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -114,3 +84,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pauseUI: {fileID: 0}
+--- !u!114 &5192642633338000448
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9104150049676953128}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ad9ee0b3b5b82a439d4690d01395381, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MaxTurn: 0
+  MaxInvertCount: 0
+  TurnCount: 0
