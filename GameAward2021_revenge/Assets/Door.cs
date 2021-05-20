@@ -14,7 +14,7 @@ public class Door : MonoBehaviour
     void Start()
     {
         turnManager = gameManager.GetComponent<TurnManager>();
-        animator = GetComponent<Animator>();
+        animator = GetComponentInChildren<Animator>();
     }
 
     // Update is called once per frame
