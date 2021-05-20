@@ -13,6 +13,8 @@ TagManager:
   - ArmorEnemyAttack
   - SpeedDownWall
   - Hole
+  - TopObject
+  - UnderObject
   layers:
   - Default
   - TransparentFX
