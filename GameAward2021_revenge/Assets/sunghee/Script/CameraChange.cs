@@ -13,6 +13,10 @@ public class CameraChange : MonoBehaviour
     private GameObject m_GameManager;
     private TurnManager m_TurnManager;
 
+    //オブジェ
+    private GameObject m_TopObject;
+    private GameObject m_UnderObject;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -24,8 +28,13 @@ public class CameraChange : MonoBehaviour
         m_GameManager = GameObject.FindWithTag("GameManager");
         m_TurnManager = m_GameManager.GetComponent<TurnManager>();
 
+        m_TopObject = GameObject.FindWithTag("TopObject");
+        m_UnderObject = GameObject.FindWithTag("UnderObject");
+
         //初めはサブカメラをオフにしておく
         m_UnderCamera.enabled = false;
+
+        m_UnderObject.SetActive(false);
     }
 
     // Update is called once per frame
@@ -34,18 +43,19 @@ public class CameraChange : MonoBehaviour
         if(m_TurnManager.GetEnvironment() == 1)
         {
             m_MainCamera.enabled = true;
-            GameObject.FindWithTag("TopObject").SetActive(true);
-            GameObject.FindWithTag("UnderObject").SetActive(false);
-
             m_UnderCamera.enabled = false;
+            m_TopObject.SetActive(true);
+            m_UnderObject.SetActive(false);
+
+            
 
         }
         else
         {
             m_MainCamera.enabled = false;
             m_UnderCamera.enabled = true;
-            GameObject.FindWithTag("TopObject").SetActive(false);
-            GameObject.FindWithTag("UnderObject").SetActive(true);
+            m_TopObject.SetActive(false);
+            m_UnderObject.SetActive(true);
 
         }
     }
