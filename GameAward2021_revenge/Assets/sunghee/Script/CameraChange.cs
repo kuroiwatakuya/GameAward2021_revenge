@@ -34,12 +34,19 @@ public class CameraChange : MonoBehaviour
         if(m_TurnManager.GetEnvironment() == 1)
         {
             m_MainCamera.enabled = true;
+            GameObject.FindWithTag("TopObject").SetActive(true);
+            GameObject.FindWithTag("UnderObject").SetActive(false);
+
             m_UnderCamera.enabled = false;
+
         }
         else
         {
             m_MainCamera.enabled = false;
             m_UnderCamera.enabled = true;
+            GameObject.FindWithTag("TopObject").SetActive(false);
+            GameObject.FindWithTag("UnderObject").SetActive(true);
+
         }
     }
 }
