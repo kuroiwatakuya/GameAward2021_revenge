@@ -34,6 +34,10 @@ public class player : MonoBehaviour
     private Light m_PlayerLight;
     [SerializeField] private float m_LightUp = 10;
 
+    //エフェクト
+    public GameObject ItemEffectObj;
+    private Transform Effects;
+    public bool Playerhit = false;
 
     public enum StatePattern //状態
     {
@@ -59,6 +63,10 @@ public class player : MonoBehaviour
         m_PlayerLight = GetComponentInChildren<Light>();
 
         m_State = StatePattern.Idle;
+
+        //エフェクトロード
+        ItemEffectObj = (GameObject)Resources.Load("ItemEffect");
+        Effects = new GameObject("Effect").transform;
     }
 
     // Update is called once per frame
@@ -159,18 +167,22 @@ public class player : MonoBehaviour
 
             if (hit.collider.CompareTag("HealItem"))
             {
+                Vector3 pos = new Vector3(hit.collider.transform.position.x, hit.collider.transform.position.y + 1, hit.collider.transform.position.z);
+                GetObject(ItemEffectObj, pos, Quaternion.identity);
                 Destroy(hit.collider.gameObject);
                 turnManager.AddTurnCount(1);
             }
 
             if (hit.collider.CompareTag("LightUp"))
             {
+                Vector3 pos = new Vector3(hit.collider.transform.position.x, hit.collider.transform.position.y + 1, hit.collider.transform.position.z);
+                GetObject(ItemEffectObj, pos, Quaternion.identity);
                 Destroy(hit.collider.gameObject);
                 m_PlayerLight.range += m_LightUp;
             }
             if (hit.collider.CompareTag("BreakWall"))
             {
-
+                rig.velocity = Vector3.zero;
                 TurnReset();
                 Destroy(hit.collider.gameObject);
             }
@@ -204,5 +216,21 @@ public class player : MonoBehaviour
         {
             turnManager.ReduceTrunCount(1);
         }
+    }
+
+    //エフェクトのオブジェクトプール
+    void GetObject(GameObject obj, Vector3 effectpos, Quaternion effectqua)
+    {
+        foreach (Transform trans in Effects)
+        {
+            //オブジェクトが非アクティブなら使いまわし
+            if (!trans.gameObject.activeSelf)
+            {
+                trans.SetPositionAndRotation(effectpos, effectqua);
+                trans.gameObject.SetActive(true);       //位置と回転を設定した後にアクティブ
+                return;
+            }
+        }
+        Instantiate(obj, effectpos, effectqua, Effects);   //生成と同時に親をEffectに設定
     }
 }
