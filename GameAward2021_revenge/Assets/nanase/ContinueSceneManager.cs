@@ -16,6 +16,9 @@ public class ContinueSceneManager : MonoBehaviour
     private GameObject gameManager;
     private SaveManager SaveManager;
 
+    private float alpha;
+    private float aspeed;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -25,11 +28,21 @@ public class ContinueSceneManager : MonoBehaviour
 
         gameManager = GameObject.FindWithTag("GameManager");
         SaveManager = gameManager.GetComponent<SaveManager>();
+
+        alpha = 1.0f;
+        aspeed = -0.5f;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (alpha <= 0.2)
+            aspeed = 0.5f;
+        if (alpha >= 1.1)
+            aspeed = -0.5f;
+
+        alpha += aspeed * Time.deltaTime;
+
         image_select.color = new Color(1.0f, 1.0f, 1.0f, 0.2f);
         image_next.color = new Color(1.0f, 1.0f, 1.0f, 0.2f);
 
@@ -39,9 +52,9 @@ public class ContinueSceneManager : MonoBehaviour
             num = 0;
 
         if (num == 1)
-            image_select.color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
+            image_select.color = new Color(1.0f, 1.0f, 1.0f, alpha);
         if (num == 0)
-            image_next.color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
+            image_next.color = new Color(1.0f, 1.0f, 1.0f, alpha);
 
         if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown("joystick button 0"))
         {
