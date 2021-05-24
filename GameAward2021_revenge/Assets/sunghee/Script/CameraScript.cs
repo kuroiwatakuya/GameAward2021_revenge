@@ -7,6 +7,8 @@ public class CameraScript : MonoBehaviour
     [SerializeField]
     private float m_Speed = 3;
 
+    [SerializeField] private float m_CameraLookPoint;
+
     private bool m_RotFlag = false;
 
     [SerializeField]  private float m_Blend;
@@ -74,7 +76,7 @@ public class CameraScript : MonoBehaviour
 
         Vector3 Pos = this.transform.position;
 
-        this.gameObject.transform.LookAt(m_Field.transform);
+        this.gameObject.transform.LookAt(new Vector3 (m_Field.transform.position.x, m_Field.transform.position.y - m_CameraLookPoint, m_Field.transform.position.z));
 
         if (m_Direction == Direction.LEFT)
         {
