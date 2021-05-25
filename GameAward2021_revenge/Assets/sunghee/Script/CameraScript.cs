@@ -57,12 +57,12 @@ public class CameraScript : MonoBehaviour
 
         if (!m_RotFlag)
         {
-            if (Input.GetKeyDown("joystick button 4"))
+            if (Input.GetKeyDown("joystick button 4") || Input.GetKeyDown(KeyCode.J))
             {
                 m_Direction = Direction.LEFT;
                 m_RotFlag = true;
             }
-            if (Input.GetKeyDown("joystick button 5"))
+            if (Input.GetKeyDown("joystick button 5") || Input.GetKeyDown(KeyCode.L))
             {
                 m_Direction = Direction.RIGHT;
                 m_RotFlag = true;
