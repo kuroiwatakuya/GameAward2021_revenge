@@ -5,21 +5,33 @@ using UnityEngine.UI;
 
 public class PauseText : MonoBehaviour
 {
-    public GameObject pause_object = null;
+    [SerializeField] private GameObject PauseSelectUI;
+    private Image image_select;
+    [SerializeField] private GameObject PauseStartUI;
+    private Image image_start;
+    [SerializeField] private GameObject PauseReStartUI;
+    private Image image_restart;
+    
     private GameObject PauseObject;
     private PauseManager PauseManagerScript;
+   
 
     // Start is called before the first frame update
     void Start()
     {
+        image_select = PauseSelectUI.GetComponent<Image>();
+        image_start = PauseStartUI.GetComponent<Image>();
+        image_restart = PauseReStartUI.GetComponent<Image>();
         
     }
 
     // Update is called once per frame
     void Update()
     {
-        // オブジェクトからTextコンポーネントを取得
-        Text pause_text = pause_object.GetComponent<Text>();
+
+        image_select.color = new Color(1.0f, 1.0f, 1.0f, 0.2f);
+        image_start.color = new Color(1.0f, 1.0f, 1.0f, 0.2f);
+        image_restart.color = new Color(1.0f, 1.0f, 1.0f, 0.2f);
 
 
         PauseObject = GameObject.FindWithTag("GameManager");
@@ -28,15 +40,15 @@ public class PauseText : MonoBehaviour
         // テキストの表示を入れ替える
         if (PauseManagerScript.GetSelectingScene() == 0)
         {
-            pause_text.text = "タイトルに戻る";
+            image_restart.color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
         }
         if (PauseManagerScript.GetSelectingScene() == 1)
         {
-            pause_text.text = "リスタート";
+            image_select.color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
         }
         if (PauseManagerScript.GetSelectingScene() == 2)
         {
-            pause_text.text = "セレクトに戻る";
+            image_start.color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
         }
     }
 }
