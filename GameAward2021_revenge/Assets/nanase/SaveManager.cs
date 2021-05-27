@@ -82,6 +82,11 @@ public class SaveManager : MonoBehaviour
         PlayerPrefs.SetInt("stage2", 1);
         PlayerPrefs.SetInt("stage3", 1);
         PlayerPrefs.SetInt("stage4", 1);
+        PlayerPrefs.SetInt("stage5", 1);
+        PlayerPrefs.SetInt("stage6", 1);
+        PlayerPrefs.SetInt("stage7", 1);
+        PlayerPrefs.SetInt("stage8", 1);
+        PlayerPrefs.SetInt("stage9", 1);
         PlayerPrefs.Save();
     }
 }
