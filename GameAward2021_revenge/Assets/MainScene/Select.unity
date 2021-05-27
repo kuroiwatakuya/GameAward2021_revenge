@@ -945,12 +945,12 @@ PrefabInstance:
     - target: {fileID: 2581900164748548266, guid: b2d3ac992e62f984085f502b8fbe6e1c,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 40
+      value: 28.4
       objectReference: {fileID: 0}
     - target: {fileID: 2581900164748548266, guid: b2d3ac992e62f984085f502b8fbe6e1c,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 29.5
       objectReference: {fileID: 0}
     - target: {fileID: 2581900164748548266, guid: b2d3ac992e62f984085f502b8fbe6e1c,
         type: 3}
@@ -995,12 +995,22 @@ PrefabInstance:
     - target: {fileID: 2581900164748548267, guid: b2d3ac992e62f984085f502b8fbe6e1c,
         type: 3}
       propertyPath: InitialModule.maxNumParticles
-      value: 500
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 2581900164748548267, guid: b2d3ac992e62f984085f502b8fbe6e1c,
         type: 3}
       propertyPath: EmissionModule.rateOverTime.scalar
-      value: 100
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 2581900164748548268, guid: b2d3ac992e62f984085f502b8fbe6e1c,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+    - target: {fileID: 2581900164748548268, guid: b2d3ac992e62f984085f502b8fbe6e1c,
+        type: 3}
+      propertyPath: m_RenderMode
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2581900164748548269, guid: b2d3ac992e62f984085f502b8fbe6e1c,
         type: 3}
