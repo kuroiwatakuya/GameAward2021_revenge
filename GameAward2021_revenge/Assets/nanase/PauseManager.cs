@@ -11,13 +11,16 @@ public class PauseManager : MonoBehaviour
     //シーン番号
     private enum SceneNum
     {
-        Title,
         ReStart,
         Select,
+        Title,
         MAX
     }
 
     [SerializeField] private GameObject pauseUI;//　ポーズした時に表示するUI
+
+    private float nowTrigger;//現在のフレームの値を格納
+    private float beforeTrigger;//1フレーム前の値を格納
 
 
     void Start()
@@ -45,11 +48,11 @@ public class PauseManager : MonoBehaviour
 
         if (pauseUI.activeSelf)
         {
+            nowTrigger = Input.GetAxis("Horizontal");
             //選択中のシーンの変更
-            if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown("joystick button 4"))
+            if (Input.GetKeyDown(KeyCode.LeftArrow) || (Input.GetAxis("Horizontal") < 0 && beforeTrigger == 0.0f))
             {
-                Debug.Log("左");
-                if (SelectingScene == (int)SceneNum.Title)
+                if (SelectingScene == (int)SceneNum.ReStart)
                 {
                     SelectingScene = (int)SceneNum.MAX - 1;
                 }
@@ -58,12 +61,11 @@ public class PauseManager : MonoBehaviour
                     SelectingScene--;
                 }
             }
-            if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown("joystick button 5"))
+            if (Input.GetKeyDown(KeyCode.RightArrow) || (Input.GetAxis("Horizontal") > 0 && beforeTrigger == 0.0f))
             {
-                Debug.Log("右");
                 if (SelectingScene == (int)SceneNum.MAX - 1)
                 {
-                    SelectingScene = (int)SceneNum.Title;
+                    SelectingScene = (int)SceneNum.ReStart;
                 }
                 else
                 {
@@ -74,10 +76,11 @@ public class PauseManager : MonoBehaviour
             //ステージ決定
             if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown("joystick button 0"))
             {
-                Debug.Log("決定");
                 Time.timeScale = 1f;
                 ChangeScene();
             }
+
+            beforeTrigger = nowTrigger;
         }
     }
 
