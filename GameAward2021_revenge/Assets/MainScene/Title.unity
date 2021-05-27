@@ -480,12 +480,12 @@ PrefabInstance:
     - target: {fileID: 2581900164748548266, guid: b2d3ac992e62f984085f502b8fbe6e1c,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 20
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 2581900164748548266, guid: b2d3ac992e62f984085f502b8fbe6e1c,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 20
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 2581900164748548266, guid: b2d3ac992e62f984085f502b8fbe6e1c,
         type: 3}
@@ -495,12 +495,12 @@ PrefabInstance:
     - target: {fileID: 2581900164748548266, guid: b2d3ac992e62f984085f502b8fbe6e1c,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 50
+      value: 60.2
       objectReference: {fileID: 0}
     - target: {fileID: 2581900164748548266, guid: b2d3ac992e62f984085f502b8fbe6e1c,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -15.9
       objectReference: {fileID: 0}
     - target: {fileID: 2581900164748548266, guid: b2d3ac992e62f984085f502b8fbe6e1c,
         type: 3}
@@ -539,8 +539,38 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2581900164748548267, guid: b2d3ac992e62f984085f502b8fbe6e1c,
         type: 3}
+      propertyPath: VelocityModule.x.scalar
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2581900164748548267, guid: b2d3ac992e62f984085f502b8fbe6e1c,
+        type: 3}
+      propertyPath: VelocityModule.y.scalar
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2581900164748548267, guid: b2d3ac992e62f984085f502b8fbe6e1c,
+        type: 3}
+      propertyPath: VelocityModule.z.scalar
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2581900164748548267, guid: b2d3ac992e62f984085f502b8fbe6e1c,
+        type: 3}
+      propertyPath: VelocityModule.x.minScalar
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2581900164748548267, guid: b2d3ac992e62f984085f502b8fbe6e1c,
+        type: 3}
+      propertyPath: VelocityModule.y.minScalar
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2581900164748548267, guid: b2d3ac992e62f984085f502b8fbe6e1c,
+        type: 3}
+      propertyPath: VelocityModule.z.minScalar
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2581900164748548267, guid: b2d3ac992e62f984085f502b8fbe6e1c,
+        type: 3}
       propertyPath: CollisionModule.maxKillSpeed
-      value: 100
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2581900164748548267, guid: b2d3ac992e62f984085f502b8fbe6e1c,
         type: 3}
@@ -550,7 +580,7 @@ PrefabInstance:
     - target: {fileID: 2581900164748548267, guid: b2d3ac992e62f984085f502b8fbe6e1c,
         type: 3}
       propertyPath: EmissionModule.rateOverTime.scalar
-      value: 100
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 2581900164748548269, guid: b2d3ac992e62f984085f502b8fbe6e1c,
         type: 3}
