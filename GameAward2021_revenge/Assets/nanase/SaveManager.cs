@@ -55,6 +55,22 @@ public class SaveManager : MonoBehaviour
         return key;
     }
 
+    public void SaveSceneName()
+    {
+        // 現在のScene名を取得する
+        Scene loadScene = SceneManager.GetActiveScene();
+        //シーンの名前をキーにセーブ
+        PlayerPrefs.SetString("scenename",loadScene.name);
+        PlayerPrefs.Save();
+    }
+
+    public string LoadSceneName()
+    {
+        string name;
+        name = PlayerPrefs.GetString("scenename", "");
+        return name;
+    }
+
     public void AllDelete()
     {
         PlayerPrefs.DeleteAll();

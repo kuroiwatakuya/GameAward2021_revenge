@@ -25,6 +25,7 @@ public class ClearSceneManager : MonoBehaviour
     {
         if (collider.gameObject.tag == "Player")
         {
+            saveManager.SaveSceneName();
             saveManager.Save();
             SceneManager.LoadScene("ClearScene");
         }

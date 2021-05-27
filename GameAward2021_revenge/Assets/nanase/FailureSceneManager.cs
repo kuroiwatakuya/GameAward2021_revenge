@@ -7,6 +7,7 @@ public class FailureSceneManager : MonoBehaviour
 {
     private GameObject TurnManager;      //ターンマネージャー格納
     private TurnManager TurnMng;         //ターンマネージャーのスクリプト受け取り
+    private SaveManager saveManager;
 
     private int TurnNum;                   //現在ターン数値
 
@@ -15,6 +16,7 @@ public class FailureSceneManager : MonoBehaviour
     {
         TurnManager = GameObject.FindWithTag("GameManager");
         TurnMng = TurnManager.gameObject.GetComponent<TurnManager>();
+        saveManager = TurnManager.GetComponent<SaveManager>();
     }
 
     // Update is called once per frame
@@ -24,6 +26,7 @@ public class FailureSceneManager : MonoBehaviour
 
         if(TurnNum<=0)
         {
+            saveManager.SaveSceneName();
             SceneManager.LoadScene("GameOver");
         }
     }
