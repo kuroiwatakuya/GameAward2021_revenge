@@ -62,19 +62,33 @@ public class ContinueSceneManager : MonoBehaviour
                 SceneManager.LoadScene("Select");
             if (num == 0)
             {
-                if (SaveManager.Load("stage4") > 0)
-                    SceneManager.LoadScene("stage5");
-
-                if (SaveManager.Load("stage3") > 0)
-                    SceneManager.LoadScene("stage4");
-
-                if (SaveManager.Load("stage2") > 0)
-                    SceneManager.LoadScene("stage3");
-
-                if (SaveManager.Load("Stage1") > 0)
-                    SceneManager.LoadScene("stage2");
-
-                SceneManager.LoadScene("Stage1");
+                // Œ»İ‚ÌScene–¼‚ğæ“¾‚·‚é
+                Scene nowScene = SceneManager.GetActiveScene();
+                if (nowScene.name == "ClearScene")
+                {
+                    if (SaveManager.Load("stage8") > 0)
+                        SceneManager.LoadScene("stage9");
+                    else if (SaveManager.Load("stage7") > 0)
+                        SceneManager.LoadScene("stage8");
+                    else if (SaveManager.Load("stage6") > 0)
+                        SceneManager.LoadScene("stage7");
+                    else if (SaveManager.Load("stage5") > 0)
+                        SceneManager.LoadScene("stage6");
+                    else if (SaveManager.Load("stage4") > 0)
+                        SceneManager.LoadScene("stage5");
+                    else if (SaveManager.Load("stage3") > 0)
+                        SceneManager.LoadScene("stage4");
+                    else if (SaveManager.Load("stage2") > 0)
+                        SceneManager.LoadScene("stage3");
+                    else if (SaveManager.Load("Stage1") > 0)
+                        SceneManager.LoadScene("stage2");
+                    else
+                        SceneManager.LoadScene("Stage1");
+                }
+                else
+                {
+                    SceneManager.LoadScene(SaveManager.LoadSceneName());
+                }
             }
         }
     }
