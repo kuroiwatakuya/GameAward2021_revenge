@@ -30,6 +30,8 @@ public class player : MonoBehaviour
     private Camera m_MainCamera;
     private Camera m_UnderCamera;
 
+    public bool FieldFlag; //Fieldにいるか
+
     //ライト
     private Light m_PlayerLight;
     [SerializeField] private float m_LightUp = 10;
@@ -118,7 +120,7 @@ public class player : MonoBehaviour
         if (isActive)
         {
             Vector3 pos = transform.position;
-            pos.y = pos.y * -1 + 3.0f;
+            pos.y = pos.y * -1 + 6.0f;
             transform.position = pos;
             turnManager.ChangeEnvironment();
             turnManager.ResetInvertCount();
@@ -130,7 +132,7 @@ public class player : MonoBehaviour
     {
         if (m_State == StatePattern.Walk)
         {
-            rig.velocity = Direction * Speed * Time.deltaTime;
+            rig.velocity = Direction * Speed;
 
 
         }
@@ -163,11 +165,11 @@ public class player : MonoBehaviour
             if (!Physics.Raycast(ray, out hit, 1.0f))
             {
                 transform.position += Vector3.zero;
-                if (Mathf.Abs(Input.GetAxisRaw("Horizontal")) == 1 && Input.GetAxisRaw("Vertical") == 0 && rad >= 1.0f)
+                if (Mathf.Abs(Input.GetAxisRaw("Horizontal")) == 1 && Input.GetAxisRaw("Vertical") == 0 && rad >= 1.0f && FieldFlag)
                 {
                     m_State = StatePattern.Walk;
                 }
-                if (Input.GetAxisRaw("Horizontal") == 0 && Mathf.Abs(Input.GetAxisRaw("Vertical")) == 1 && rad >= 1.0f)
+                if (Input.GetAxisRaw("Horizontal") == 0 && Mathf.Abs(Input.GetAxisRaw("Vertical")) == 1 && rad >= 1.0f && FieldFlag)
                 {
                     m_State = StatePattern.Walk;
                 }
@@ -190,7 +192,7 @@ public class player : MonoBehaviour
                 TurnReset();
             }
 
-            if (hit.collider.CompareTag("HealItem"))
+            /*if (hit.collider.CompareTag("HealItem"))
             {
                 //回復アイテムエフェクト
                 Vector3 pos = new Vector3(hit.collider.transform.position.x, hit.collider.transform.position.y + 1, hit.collider.transform.position.z);
@@ -208,9 +210,12 @@ public class player : MonoBehaviour
                 audioSource.PlayOneShot(Lightupse);
                 Destroy(hit.collider.gameObject);
                 m_PlayerLight.range += m_LightUp;
-            }
+            }*/
+
             if (hit.collider.CompareTag("BreakWall"))
             {
+                //壁衝突エフェクト
+                GetObject(WallhitEffectobj, this.gameObject.transform.position, Quaternion.identity);
                 rig.velocity = Vector3.zero;
                 audioSource.PlayOneShot(breakblock);
                 TurnReset();
@@ -243,11 +248,31 @@ public class player : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("ArmorEnemyAttack"))
+        if (other.gameObject.tag == "ArmorEnemyAttack")
         {
             GetObject(DamageEffectobj, this.gameObject.transform.position, Quaternion.identity);
             audioSource.PlayOneShot(enemyhit);
             turnManager.ReduceTrunCount(1);
+        }
+
+        if (other.gameObject.tag == "HealItem")
+        {
+            //回復アイテムエフェクト
+            Vector3 pos = new Vector3(other.gameObject.transform.position.x, other.gameObject.transform.position.y + 1, other.gameObject.transform.position.z);
+            GetObject(ItemEffectObj, pos, Quaternion.identity);
+            audioSource.PlayOneShot(time);
+            Destroy(other.gameObject);
+            turnManager.AddTurnCount(1);
+        }
+
+        if (other.gameObject.tag == "LightUp")
+        {
+            //アイテムエフェクト
+            Vector3 pos = new Vector3(other.gameObject.transform.position.x, other.gameObject.transform.position.y + 1, other.gameObject.transform.position.z);
+            GetObject(ItemEffectObj, pos, Quaternion.identity);
+            audioSource.PlayOneShot(Lightupse);
+            Destroy(other.gameObject);
+            m_PlayerLight.range += m_LightUp;
         }
     }
 
@@ -265,5 +290,20 @@ public class player : MonoBehaviour
             }
         }
         Instantiate(obj, effectpos, effectqua, Effects);   //生成と同時に親をEffectに設定
+    }
+    private void OnCollisionStay(Collision collision)
+    {
+        if(collision.gameObject.tag == "Field")
+        {
+            FieldFlag = true;
+        }
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.tag == "Field")
+        {
+            FieldFlag = false;
+        }
     }
 }

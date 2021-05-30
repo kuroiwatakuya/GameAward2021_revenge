@@ -718,7 +718,7 @@ PrefabInstance:
     - target: {fileID: 4855675750461244412, guid: c13f8cd64924314488b22cfce979927c,
         type: 3}
       propertyPath: MoveSpeed
-      value: 600
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4855675750461244412, guid: c13f8cd64924314488b22cfce979927c,
         type: 3}
@@ -14422,7 +14422,7 @@ GameObject:
   - component: {fileID: 1527357025}
   m_Layer: 0
   m_Name: Field
-  m_TagString: Untagged
+  m_TagString: Field
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -16633,7 +16633,7 @@ GameObject:
   - component: {fileID: 1720127154}
   m_Layer: 6
   m_Name: Field
-  m_TagString: Untagged
+  m_TagString: Field
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -19913,11 +19913,11 @@ Transform:
   - {fileID: 1627748016}
   - {fileID: 1930254444}
   - {fileID: 2051680769}
-  - {fileID: 1025330908}
+  - {fileID: 502494441}
   - {fileID: 1912603113}
   - {fileID: 1809771379}
   - {fileID: 999852764}
-  - {fileID: 502494441}
+  - {fileID: 1025330908}
   - {fileID: 1562050707}
   - {fileID: 1433737349}
   - {fileID: 1103433268}
