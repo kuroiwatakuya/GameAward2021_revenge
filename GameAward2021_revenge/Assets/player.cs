@@ -35,9 +35,16 @@ public class player : MonoBehaviour
     [SerializeField] private float m_LightUp = 10;
 
     //エフェクト
+    //アイテム
     public GameObject ItemEffectObj;
     private Transform Effects;
     public bool Playerhit = false;
+
+    //壁衝突
+    public GameObject WallhitEffectobj;
+
+    //ダメージエフェクト
+    public GameObject DamageEffectobj;
 
     public enum StatePattern //状態
     {
@@ -66,6 +73,8 @@ public class player : MonoBehaviour
 
         //エフェクトロード
         ItemEffectObj = (GameObject)Resources.Load("ItemEffect");
+        WallhitEffectobj = (GameObject)Resources.Load("wallhit");
+        DamageEffectobj = (GameObject)Resources.Load("damage");
         Effects = new GameObject("Effect").transform;
     }
 
@@ -162,11 +171,14 @@ public class player : MonoBehaviour
         {
             if (hit.collider.CompareTag("Wall"))
             {
+                //壁衝突エフェクト
+                GetObject(WallhitEffectobj, this.gameObject.transform.position, Quaternion.identity);
                 TurnReset();
             }
 
             if (hit.collider.CompareTag("HealItem"))
             {
+                //回復アイテムエフェクト
                 Vector3 pos = new Vector3(hit.collider.transform.position.x, hit.collider.transform.position.y + 1, hit.collider.transform.position.z);
                 GetObject(ItemEffectObj, pos, Quaternion.identity);
                 Destroy(hit.collider.gameObject);
@@ -175,6 +187,7 @@ public class player : MonoBehaviour
 
             if (hit.collider.CompareTag("LightUp"))
             {
+                //アイテムエフェクト
                 Vector3 pos = new Vector3(hit.collider.transform.position.x, hit.collider.transform.position.y + 1, hit.collider.transform.position.z);
                 GetObject(ItemEffectObj, pos, Quaternion.identity);
                 Destroy(hit.collider.gameObject);
@@ -214,6 +227,7 @@ public class player : MonoBehaviour
     {
         if (other.gameObject.CompareTag("ArmorEnemyAttack"))
         {
+            GetObject(DamageEffectobj, this.gameObject.transform.position, Quaternion.identity);
             turnManager.ReduceTrunCount(1);
         }
     }

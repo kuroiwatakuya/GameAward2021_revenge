@@ -76,11 +76,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fc36666ae51b484fb7429ec10d75f33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AngleSpeed: 0
-  MoveSpeed: 0
+  AngleSpeed: 1000
+  MoveSpeed: 600
   m_LightUp: 10
-  ItemEffectObj: {fileID: 0}
+  ItemEffectObj: {fileID: 2823896760016349911, guid: 827ffab0bb2e30349a3f2f6f1dc139b3,
+    type: 3}
   Playerhit: 0
+  WallhitEffectobj: {fileID: 6189285876566043146, guid: dae533fd011cad1429fcdedc70d0cde6,
+    type: 3}
+  DamageEffectobj: {fileID: 7578986435343056429, guid: 0186b0828f4a36a469bc14dc73ba6280,
+    type: 3}
 --- !u!1 &677567888731714037
 GameObject:
   m_ObjectHideFlags: 0
