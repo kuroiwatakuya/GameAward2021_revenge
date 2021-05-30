@@ -17,6 +17,9 @@ public class ContinueSceneManager : MonoBehaviour
     private SaveManager SaveManager;
     private FadeManager fadeManager;
 
+    public AudioClip clip;
+    private AudioSource audioSource;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -29,6 +32,8 @@ public class ContinueSceneManager : MonoBehaviour
         fadeManager = gameManager.GetComponent<FadeManager>();
 
         fadeManager.OnFadeOut();
+
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -51,6 +56,7 @@ public class ContinueSceneManager : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown("joystick button 0"))
             {
+                audioSource.PlayOneShot(clip);
                 fadeManager.OnFadeIn();
             }
         }

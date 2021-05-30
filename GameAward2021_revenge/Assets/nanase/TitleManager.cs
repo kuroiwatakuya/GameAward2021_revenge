@@ -15,6 +15,9 @@ public class TitleManager : MonoBehaviour
     private GameObject gameManager;
     private FadeManager fadeManager;
 
+    public AudioClip clip;
+    private AudioSource audioSource;
+
     void Start()
     {
         alpha = 1.0f;
@@ -25,6 +28,8 @@ public class TitleManager : MonoBehaviour
         fadeManager = gameManager.GetComponent<FadeManager>();
 
         fadeManager.OnFadeOut();
+
+        audioSource = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -40,6 +45,7 @@ public class TitleManager : MonoBehaviour
         if ((fadeManager.GetIsFade() == -1 && fadeManager.GetAlfa() <0.0f) 
             && (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown("joystick button 0")))
         {
+            audioSource.PlayOneShot(clip);
             fadeManager.OnFadeIn();
         }
 
