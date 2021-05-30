@@ -15,9 +15,7 @@ public class ContinueSceneManager : MonoBehaviour
 
     private GameObject gameManager;
     private SaveManager SaveManager;
-
-    private float alpha;
-    private float aspeed;
+    private FadeManager fadeManager;
 
     // Start is called before the first frame update
     void Start()
@@ -28,35 +26,35 @@ public class ContinueSceneManager : MonoBehaviour
 
         gameManager = GameObject.FindWithTag("GameManager");
         SaveManager = gameManager.GetComponent<SaveManager>();
+        fadeManager = gameManager.GetComponent<FadeManager>();
 
-        alpha = 1.0f;
-        aspeed = -0.5f;
+        fadeManager.OnFadeOut();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (alpha <= 0.2)
-            aspeed = 0.5f;
-        if (alpha >= 1.1)
-            aspeed = -0.5f;
+        if (fadeManager.GetIsFade() == -1 && fadeManager.GetAlfa() < 0.0f)
+        {
+            image_select.color = new Color(1.0f, 1.0f, 1.0f, 0.2f);
+            image_next.color = new Color(1.0f, 1.0f, 1.0f, 0.2f);
 
-        alpha += aspeed * Time.deltaTime;
+            if (Input.GetAxis("Horizontal") > 0)
+                num = 1;
+            if (Input.GetAxis("Horizontal") < 0)
+                num = 0;
 
-        image_select.color = new Color(1.0f, 1.0f, 1.0f, 0.2f);
-        image_next.color = new Color(1.0f, 1.0f, 1.0f, 0.2f);
+            if (num == 1)
+                image_select.color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
+            if (num == 0)
+                image_next.color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
 
-        if (Input.GetAxis("Horizontal") > 0)
-            num = 1;
-        if (Input.GetAxis("Horizontal") < 0)
-            num = 0;
-
-        if (num == 1)
-            image_select.color = new Color(1.0f, 1.0f, 1.0f, alpha);
-        if (num == 0)
-            image_next.color = new Color(1.0f, 1.0f, 1.0f, alpha);
-
-        if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown("joystick button 0"))
+            if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown("joystick button 0"))
+            {
+                fadeManager.OnFadeIn();
+            }
+        }
+        if (fadeManager.GetIsFade() == 1 && fadeManager.GetAlfa() > 1.0f)
         {
             if (num == 1)
                 SceneManager.LoadScene("Select");

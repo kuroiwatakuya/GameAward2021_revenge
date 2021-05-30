@@ -9,6 +9,7 @@ public class SelectManager : MonoBehaviour
     private int SelectingStage;//選択中ステージ
     private GameObject gameManager;
     private SaveManager SaveManager;
+    private FadeManager fadeManager;
 
     //現在のフレームの値を格納  1フレーム前の値を格納
     private float nowHorizontal;//横軸
@@ -59,6 +60,9 @@ public class SelectManager : MonoBehaviour
     {
         gameManager = GameObject.FindWithTag("GameManager");
         SaveManager = gameManager.GetComponent<SaveManager>();
+        fadeManager = gameManager.GetComponent<FadeManager>();
+
+        fadeManager.OnFadeOut();
 
         image_s1 = SeSt1.GetComponent<Image>();
         image_s2 = SeSt2.GetComponent<Image>();
@@ -92,68 +96,77 @@ public class SelectManager : MonoBehaviour
         nowHorizontal = Input.GetAxis("Horizontal");
         nowVertical = Input.GetAxis("Vertical");
 
-        //選択中のステージの変更
-        if (Input.GetKeyDown(KeyCode.LeftArrow) || (nowHorizontal < 0 && beforeHorizontal == 0.0f))
+        if (fadeManager.GetIsFade() == -1 && fadeManager.GetAlfa() < 0.0f)
         {
-            if (SelectingStage == (int)StageNum.title)
+            //選択中のステージの変更
+            if (Input.GetKeyDown(KeyCode.LeftArrow) || (nowHorizontal < 0 && beforeHorizontal == 0.0f))
             {
-                SelectingStage = (int)StageNum.MAX - 1;
+                if (SelectingStage == (int)StageNum.title)
+                {
+                    SelectingStage = (int)StageNum.MAX - 1;
+                }
+                else
+                {
+                    SelectingStage--;
+                }
             }
-            else
+            if (Input.GetKeyDown(KeyCode.RightArrow) || (nowHorizontal > 0 && beforeHorizontal == 0.0f))
             {
-                SelectingStage--;
+                if (SelectingStage == (int)StageNum.MAX - 1)
+                {
+                    SelectingStage = (int)StageNum.title;
+                }
+                else
+                {
+                    SelectingStage++;
+                }
             }
-        }
-        if (Input.GetKeyDown(KeyCode.RightArrow) || (nowHorizontal > 0 && beforeHorizontal == 0.0f))
-        {
-            if (SelectingStage == (int)StageNum.MAX - 1)
+
+            if (Input.GetKeyDown(KeyCode.UpArrow) || (nowVertical > 0 && beforeVertical == 0.0f))
             {
-                SelectingStage = (int)StageNum.title;
+                if (SelectingStage == (int)StageNum.title)
+                {
+                    SelectingStage = (int)StageNum.MAX - 1;
+                }
+                else if (SelectingStage <= (int)StageNum.stage_3)
+                {
+                    SelectingStage = (int)StageNum.title;
+                }
+                else
+                {
+                    SelectingStage -= 3;
+                }
             }
-            else
+            if (Input.GetKeyDown(KeyCode.DownArrow) || (nowVertical < 0 && beforeVertical == 0.0f))
             {
-                SelectingStage++;
+                if (SelectingStage <= (int)StageNum.title)
+                {
+                    SelectingStage = (int)StageNum.stage_1;
+                }
+                else if (SelectingStage >= (int)StageNum.stage_7)
+                {
+                    SelectingStage = (int)StageNum.title;
+                }
+                else
+                {
+                    SelectingStage += 3;
+                }
+            }
+
+            SelectScene();
+
+            //ステージ決定
+            if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown("joystick button 0"))
+            {
+                fadeManager.OnFadeIn();
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.UpArrow) || (nowVertical > 0 && beforeVertical == 0.0f))
-        {
-            if (SelectingStage == (int)StageNum.title)
-            {
-                SelectingStage = (int)StageNum.MAX - 1;
-            }
-            else if(SelectingStage <= (int)StageNum.stage_3)
-            {
-                SelectingStage = (int)StageNum.title;
-            }
-            else
-            {
-                SelectingStage -= 3;
-            }
-        }
-        if (Input.GetKeyDown(KeyCode.DownArrow) || (nowVertical < 0 && beforeVertical == 0.0f))
-        {
-            if (SelectingStage <= (int)StageNum.title)
-            {
-                SelectingStage = (int)StageNum.stage_1;
-            }
-            else if (SelectingStage >= (int)StageNum.stage_7)
-            {
-                SelectingStage = (int)StageNum.title;
-            }
-            else
-            {
-                SelectingStage += 3;
-            }
-        }
-
-        //ステージ決定
-        if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown("joystick button 0"))
+        if (fadeManager.GetIsFade() == 1 && fadeManager.GetAlfa() > 1.0f)
         {
             ChangeGameScene();
         }
 
-        SelectScene();
 
         beforeHorizontal = nowHorizontal;
         beforeVertical = nowVertical;

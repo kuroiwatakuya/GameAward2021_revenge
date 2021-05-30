@@ -5,10 +5,10 @@ using UnityEngine.UI;
 
 public class FadeManager : MonoBehaviour
 {
-    [SerializeField] private float alfa;//アルファ値保存用
-    public float speed;//変化速度
+    private float alfa;//アルファ値保存用
+    private float speed = 0.35f;//変化速度
     private float red, green, blue;//RGB値保存用
-    [SerializeField] private int isFade;//0で何も起きない　1でフェードイン開始　-1でフェードアウト開始
+    private int isFade;//0で何も起きない　1でフェードイン開始　-1でフェードアウト開始
     public Image Panel;
 
     // Start is called before the first frame update
@@ -22,11 +22,11 @@ public class FadeManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(isFade>0)
+        if(isFade > 0)
         {
             FadeIn();
         }
-        if(isFade<0)
+        if(isFade < 0)
         {
             FadeOut();
         }
@@ -56,6 +56,17 @@ public class FadeManager : MonoBehaviour
     {
         alfa = 1.0f;
         isFade = -1;
+    }
+
+    //フェードの状態取得　0で何も起きない　1でフェードイン開始　-1でフェードアウト開始
+    public int GetIsFade()
+    {
+        return isFade;
+    }
+    //アルファ値を取得
+    public float GetAlfa()
+    {
+        return alfa;
     }
 
     //フェードイン

@@ -12,11 +12,19 @@ public class TitleManager : MonoBehaviour
     private float alpha;
     private float aspeed;
 
+    private GameObject gameManager;
+    private FadeManager fadeManager;
+
     void Start()
     {
         alpha = 1.0f;
         aspeed = -0.5f;
         image_start = TitlestartUI.GetComponent<Image>();
+
+        gameManager = GameObject.FindWithTag("GameManager");
+        fadeManager = gameManager.GetComponent<FadeManager>();
+
+        fadeManager.OnFadeOut();
     }
 
     void Update()
@@ -29,7 +37,13 @@ public class TitleManager : MonoBehaviour
         alpha += aspeed * Time.deltaTime;
         image_start.color = new Color(1.0f, 1.0f, 1.0f, alpha);
 
-        if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown("joystick button 0"))
+        if ((fadeManager.GetIsFade() == -1 && fadeManager.GetAlfa() <0.0f) 
+            && (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown("joystick button 0")))
+        {
+            fadeManager.OnFadeIn();
+        }
+
+        if (fadeManager.GetIsFade() == 1 && fadeManager.GetAlfa() > 1.0f)
         {
             SceneManager.LoadScene("Select");
         }
