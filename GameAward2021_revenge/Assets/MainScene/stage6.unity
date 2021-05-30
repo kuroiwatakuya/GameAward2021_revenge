@@ -7156,6 +7156,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4560234054928227642, guid: 1427ba55651739d4aae641764362e384,
+        type: 3}
+      propertyPath: Panel
+      value: 
+      objectReference: {fileID: 2146259539}
     - target: {fileID: 5192642633338000448, guid: 1427ba55651739d4aae641764362e384,
         type: 3}
       propertyPath: MaxTurn
@@ -7171,6 +7176,11 @@ PrefabInstance:
       propertyPath: pauseUI
       value: 
       objectReference: {fileID: 2146259538}
+    - target: {fileID: 8235162950308876465, guid: 1427ba55651739d4aae641764362e384,
+        type: 3}
+      propertyPath: isDelete
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9104150049676953128, guid: 1427ba55651739d4aae641764362e384,
         type: 3}
       propertyPath: m_Name
@@ -18610,7 +18620,7 @@ TerrainCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2127025565}
   m_Material: {fileID: 0}
-  m_Enabled: 1
+  m_Enabled: 0
   m_TerrainData: {fileID: 15600000, guid: 78dfa0e3648bb1643ab29ca4e25a6334, type: 2}
   m_EnableTreeColliders: 1
 --- !u!218 &2127025567
@@ -19034,3 +19044,15 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 2146259537}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2146259539 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4843532074451447529, guid: 883eb377ab3fdac46a3dca09ebab13ea,
+    type: 3}
+  m_PrefabInstance: {fileID: 2146259537}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

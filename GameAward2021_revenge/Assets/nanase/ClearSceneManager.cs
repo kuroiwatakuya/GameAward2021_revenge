@@ -14,6 +14,10 @@ public class ClearSceneManager : MonoBehaviour
 
     private bool isClear;
 
+    //SE
+    public AudioClip clip;
+    private AudioSource audioSource;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -25,6 +29,8 @@ public class ClearSceneManager : MonoBehaviour
         fadeManager.OnFadeOut();
 
         isClear = false;
+
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -63,6 +69,7 @@ public class ClearSceneManager : MonoBehaviour
         if (collider.gameObject.tag == "Player")
         {
             isClear = true;
+            audioSource.PlayOneShot(clip);
             fadeManager.OnFadeIn();
         }
     }
