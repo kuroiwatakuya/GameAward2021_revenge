@@ -36,12 +36,11 @@ public class ClearSceneManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!isClear)
-        {
-            TurnNum = TurnMng.GetTurnCount();                       //Å‘åƒ^[ƒ“””’lŠi”[
-        }
 
-        if (TurnNum <= 0)
+        TurnNum = TurnMng.GetTurnCount();                       //Å‘åƒ^[ƒ“””’lŠi”[
+    
+
+        if (TurnNum <= 0 && fadeManager.GetIsFade() != 1)
         {
             fadeManager.OnFadeIn();
         }
@@ -66,7 +65,7 @@ public class ClearSceneManager : MonoBehaviour
 
     void OnCollisionEnter(Collision collider)
     {
-        if (collider.gameObject.tag == "Player")
+        if (collider.gameObject.tag == "Player" && fadeManager.GetIsFade() != 1)
         {
             isClear = true;
             audioSource.PlayOneShot(clip);
