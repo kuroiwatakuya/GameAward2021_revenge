@@ -26,7 +26,8 @@ public class ClearSceneManager : MonoBehaviour
         TurnMng = gameManager.GetComponent<TurnManager>();
         fadeManager = gameManager.GetComponent<FadeManager>();
 
-        fadeManager.OnFadeOut();
+        if (fadeManager.GetIsFade() == -1)
+            fadeManager.OnFadeOut();
 
         isClear = false;
 
