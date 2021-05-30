@@ -2801,6 +2801,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 883eb377ab3fdac46a3dca09ebab13ea, type: 3}
+--- !u!114 &425933878 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4843532074451447529, guid: 883eb377ab3fdac46a3dca09ebab13ea,
+    type: 3}
+  m_PrefabInstance: {fileID: 425933877}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &436605286
 GameObject:
   m_ObjectHideFlags: 0
@@ -7629,6 +7641,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4560234054928227642, guid: 1427ba55651739d4aae641764362e384,
+        type: 3}
+      propertyPath: Panel
+      value: 
+      objectReference: {fileID: 425933878}
     - target: {fileID: 5192642633338000448, guid: 1427ba55651739d4aae641764362e384,
         type: 3}
       propertyPath: MaxTurn

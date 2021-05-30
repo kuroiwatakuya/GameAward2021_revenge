@@ -47,7 +47,12 @@ public class player : MonoBehaviour
     public GameObject DamageEffectobj;
 
     //SE
-    public AudioClip wallhit;
+    public AudioClip wallhit;                       //壁衝突SE
+    public AudioClip enemyhit;                   //被弾SE
+    public AudioClip speeddown;                //スピード低下
+    public AudioClip Lightupse;                  //ライトアップ
+    public AudioClip time;                          //ターン増加
+    public AudioClip breakblock;                 //壊れるブロック
     private AudioSource audioSource;
 
     public enum StatePattern //状態
@@ -190,6 +195,7 @@ public class player : MonoBehaviour
                 //回復アイテムエフェクト
                 Vector3 pos = new Vector3(hit.collider.transform.position.x, hit.collider.transform.position.y + 1, hit.collider.transform.position.z);
                 GetObject(ItemEffectObj, pos, Quaternion.identity);
+                audioSource.PlayOneShot(time);
                 Destroy(hit.collider.gameObject);
                 turnManager.AddTurnCount(1);
             }
@@ -199,12 +205,14 @@ public class player : MonoBehaviour
                 //アイテムエフェクト
                 Vector3 pos = new Vector3(hit.collider.transform.position.x, hit.collider.transform.position.y + 1, hit.collider.transform.position.z);
                 GetObject(ItemEffectObj, pos, Quaternion.identity);
+                audioSource.PlayOneShot(Lightupse);
                 Destroy(hit.collider.gameObject);
                 m_PlayerLight.range += m_LightUp;
             }
             if (hit.collider.CompareTag("BreakWall"))
             {
                 rig.velocity = Vector3.zero;
+                audioSource.PlayOneShot(breakblock);
                 TurnReset();
                 Destroy(hit.collider.gameObject);
             }
@@ -212,6 +220,7 @@ public class player : MonoBehaviour
             if (hit.collider.CompareTag("SpeedDownWall"))
             {
                 TurnReset();
+                audioSource.PlayOneShot(speeddown);
                 hit.collider.gameObject.SetActive(false);
             }
 
@@ -237,6 +246,7 @@ public class player : MonoBehaviour
         if (other.gameObject.CompareTag("ArmorEnemyAttack"))
         {
             GetObject(DamageEffectobj, this.gameObject.transform.position, Quaternion.identity);
+            audioSource.PlayOneShot(enemyhit);
             turnManager.ReduceTrunCount(1);
         }
     }

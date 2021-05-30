@@ -88,6 +88,11 @@ MonoBehaviour:
   DamageEffectobj: {fileID: 7578986435343056429, guid: 0186b0828f4a36a469bc14dc73ba6280,
     type: 3}
   wallhit: {fileID: 8300000, guid: 5bedd23406004db4f97e5f995e28856a, type: 3}
+  enemyhit: {fileID: 8300000, guid: fd46fde84f8f2b542b7b2495571c8fb5, type: 3}
+  speeddown: {fileID: 8300000, guid: 49df90704f1acb049b4cc54aa6a5284b, type: 3}
+  Lightupse: {fileID: 8300000, guid: f5acbc48f3b5afa438a63d48fb6781bd, type: 3}
+  time: {fileID: 8300000, guid: 17807ab407266c34b8b398ef2b5d9e89, type: 3}
+  breakblock: {fileID: 8300000, guid: ddeed2af26a5606498753a525744ce80, type: 3}
 --- !u!82 &4781320765321779633
 AudioSource:
   m_ObjectHideFlags: 0
@@ -100,7 +105,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 0.3
+  m_Volume: 0.2
   m_Pitch: 1
   Loop: 0
   Mute: 0
