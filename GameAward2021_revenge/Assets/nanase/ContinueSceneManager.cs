@@ -70,24 +70,37 @@ public class ContinueSceneManager : MonoBehaviour
                 Scene nowScene = SceneManager.GetActiveScene();
                 if (nowScene.name == "ClearScene")
                 {
-                    if (SaveManager.Load("stage8") > 0)
-                        SceneManager.LoadScene("stage9");
-                    else if (SaveManager.Load("stage7") > 0)
-                        SceneManager.LoadScene("stage8");
-                    else if (SaveManager.Load("stage6") > 0)
-                        SceneManager.LoadScene("stage7");
-                    else if (SaveManager.Load("stage5") > 0)
-                        SceneManager.LoadScene("stage6");
-                    else if (SaveManager.Load("stage4") > 0)
-                        SceneManager.LoadScene("stage5");
-                    else if (SaveManager.Load("stage3") > 0)
-                        SceneManager.LoadScene("stage4");
-                    else if (SaveManager.Load("stage2") > 0)
-                        SceneManager.LoadScene("stage3");
-                    else if (SaveManager.Load("Stage1") > 0)
-                        SceneManager.LoadScene("stage2");
-                    else
-                        SceneManager.LoadScene("Stage1");
+                    string name = SaveManager.LoadSceneName();
+                    switch(name)
+                    {
+                        case "Stage1":
+                            SceneManager.LoadScene("stage2");
+                            break;
+                        case "stage2":
+                            SceneManager.LoadScene("stage3");
+                            break;
+                        case "stage3":
+                            SceneManager.LoadScene("stage4");
+                            break;
+                        case "stage4":
+                            SceneManager.LoadScene("stage5");
+                            break;
+                        case "stage5":
+                            SceneManager.LoadScene("stage6");
+                            break;
+                        case "stage6":
+                            SceneManager.LoadScene("stage7");
+                            break;
+                        case "stage7":
+                            SceneManager.LoadScene("stage8");
+                            break;
+                        case "stage8":
+                            SceneManager.LoadScene("stage9");
+                            break;
+                        case "stage9":
+                            SceneManager.LoadScene("stage9");
+                            break;
+                    }
                 }
                 else
                 {
