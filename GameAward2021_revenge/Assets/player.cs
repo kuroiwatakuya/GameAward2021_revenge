@@ -46,6 +46,10 @@ public class player : MonoBehaviour
     //ダメージエフェクト
     public GameObject DamageEffectobj;
 
+    //SE
+    public AudioClip wallhit;
+    private AudioSource audioSource;
+
     public enum StatePattern //状態
     {
         Idle,
@@ -76,6 +80,9 @@ public class player : MonoBehaviour
         WallhitEffectobj = (GameObject)Resources.Load("wallhit");
         DamageEffectobj = (GameObject)Resources.Load("damage");
         Effects = new GameObject("Effect").transform;
+
+        //SEセット
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -173,6 +180,8 @@ public class player : MonoBehaviour
             {
                 //壁衝突エフェクト
                 GetObject(WallhitEffectobj, this.gameObject.transform.position, Quaternion.identity);
+                //衝突SE
+                audioSource.PlayOneShot(wallhit);
                 TurnReset();
             }
 

@@ -39,6 +39,10 @@ public class SelectManager : MonoBehaviour
     [SerializeField] private GameObject SelectBackUI;
     private Image image_back;
 
+    //SE
+    public AudioClip clip;
+    private AudioSource audioSource;
+
     //ステージ番号
     private enum StageNum
     {
@@ -77,6 +81,8 @@ public class SelectManager : MonoBehaviour
         image_back = SelectBackUI.GetComponent<Image>();
 
         SelectingStage = 1;
+
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -158,6 +164,7 @@ public class SelectManager : MonoBehaviour
             //ステージ決定
             if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown("joystick button 0"))
             {
+                audioSource.PlayOneShot(clip);
                 fadeManager.OnFadeIn();
             }
         }
