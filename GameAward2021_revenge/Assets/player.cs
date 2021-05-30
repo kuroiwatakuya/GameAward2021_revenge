@@ -30,8 +30,6 @@ public class player : MonoBehaviour
     private Camera m_MainCamera;
     private Camera m_UnderCamera;
 
-    public bool FieldFlag; //FieldÇ…Ç¢ÇÈÇ©
-
     //ÉâÉCÉg
     private Light m_PlayerLight;
     [SerializeField] private float m_LightUp = 10;
@@ -120,7 +118,7 @@ public class player : MonoBehaviour
         if (isActive)
         {
             Vector3 pos = transform.position;
-            pos.y = pos.y * -1 + 6.0f;
+            pos.y = pos.y * -1 + 2.0f;
             transform.position = pos;
             turnManager.ChangeEnvironment();
             turnManager.ResetInvertCount();
@@ -165,11 +163,11 @@ public class player : MonoBehaviour
             if (!Physics.Raycast(ray, out hit, 1.0f))
             {
                 transform.position += Vector3.zero;
-                if (Mathf.Abs(Input.GetAxisRaw("Horizontal")) == 1 && Input.GetAxisRaw("Vertical") == 0 && rad >= 1.0f && FieldFlag)
+                if (Mathf.Abs(Input.GetAxisRaw("Horizontal")) == 1 && Input.GetAxisRaw("Vertical") == 0 && rad >= 1.0f)
                 {
                     m_State = StatePattern.Walk;
                 }
-                if (Input.GetAxisRaw("Horizontal") == 0 && Mathf.Abs(Input.GetAxisRaw("Vertical")) == 1 && rad >= 1.0f && FieldFlag)
+                if (Input.GetAxisRaw("Horizontal") == 0 && Mathf.Abs(Input.GetAxisRaw("Vertical")) == 1 && rad >= 1.0f )
                 {
                     m_State = StatePattern.Walk;
                 }
@@ -291,19 +289,6 @@ public class player : MonoBehaviour
         }
         Instantiate(obj, effectpos, effectqua, Effects);   //ê∂ê¨Ç∆ìØéûÇ…êeÇEffectÇ…ê›íË
     }
-    private void OnCollisionStay(Collision collision)
-    {
-        if(collision.gameObject.tag == "Field")
-        {
-            FieldFlag = true;
-        }
-    }
-
-    private void OnCollisionExit(Collision collision)
-    {
-        if (collision.gameObject.tag == "Field")
-        {
-            FieldFlag = false;
-        }
-    }
+    
+    
 }
