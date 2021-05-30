@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class FadeManager : MonoBehaviour
 {
     private float alfa;//アルファ値保存用
-    private float speed = 0.35f;//変化速度
+    private float speed = 0.6f;//変化速度
     private float red, green, blue;//RGB値保存用
     private int isFade;//0で何も起きない　1でフェードイン開始　-1でフェードアウト開始
     public Image Panel;
