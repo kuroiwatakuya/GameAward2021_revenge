@@ -43,6 +43,8 @@ public class SelectManager : MonoBehaviour
     public AudioClip clip;
     private AudioSource audioSource;
 
+    private bool isOn;
+
     //ステージ番号
     private enum StageNum
     {
@@ -83,6 +85,8 @@ public class SelectManager : MonoBehaviour
         SelectingStage = 1;
 
         audioSource = GetComponent<AudioSource>();
+
+        isOn = false;
     }
 
     // Update is called once per frame
@@ -165,7 +169,7 @@ public class SelectManager : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown("joystick button 0"))
             {
                 audioSource.PlayOneShot(clip);
-                fadeManager.OnFadeIn();
+                OnFade();
             }
         }
 
@@ -281,6 +285,54 @@ public class SelectManager : MonoBehaviour
                 image_s9.color = new Color(0.5f, 0.5f, 0.5f, 1.0f);
                 if (SaveManager.Load("stage8") > 0)
                     image_s9.color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
+                break;
+            default:
+                Debug.Log("エラー");
+                break;
+        }
+    }
+
+    private void OnFade()
+    {
+        switch (SelectingStage)
+        {
+            case (int)StageNum.title:
+                fadeManager.OnFadeIn();
+                break;
+            case (int)StageNum.stage_1:
+                fadeManager.OnFadeIn();
+                break;
+            case (int)StageNum.stage_2:
+                if (SaveManager.Load("Stage1") > 0)
+                    fadeManager.OnFadeIn();
+                break;
+            case (int)StageNum.stage_3:
+                if (SaveManager.Load("stage2") > 0)
+                    fadeManager.OnFadeIn();
+                break;
+            case (int)StageNum.stage_4:
+                if (SaveManager.Load("stage3") > 0)
+                    fadeManager.OnFadeIn();
+                break;
+            case (int)StageNum.stage_5:
+                if (SaveManager.Load("stage4") > 0)
+                    fadeManager.OnFadeIn();
+                break;
+            case (int)StageNum.stage_6:
+                if (SaveManager.Load("stage5") > 0)
+                    fadeManager.OnFadeIn();
+                break;
+            case (int)StageNum.stage_7:
+                if (SaveManager.Load("stage6") > 0)
+                    fadeManager.OnFadeIn();
+                break;
+            case (int)StageNum.stage_8:
+                if (SaveManager.Load("stage7") > 0)
+                    fadeManager.OnFadeIn();
+                break;
+            case (int)StageNum.stage_9:
+                if (SaveManager.Load("stage8") > 0)
+                    fadeManager.OnFadeIn();
                 break;
             default:
                 Debug.Log("エラー");
