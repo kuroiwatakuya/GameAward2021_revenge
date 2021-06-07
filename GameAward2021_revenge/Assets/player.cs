@@ -118,7 +118,7 @@ public class player : MonoBehaviour
         if (isActive)
         {
             Vector3 pos = transform.position;
-            pos.y = pos.y * -1 + 2.0f;
+            pos.y = pos.y * -1 + 4.0f;
             transform.position = pos;
             turnManager.ChangeEnvironment();
             turnManager.ResetInvertCount();
