@@ -17,7 +17,7 @@ public class player : MonoBehaviour
     private Ray ray;                                            //飛ばすレイ
     private RaycastHit hit;                                     //当たった対象物の情報格納
     private Vector3 rayPosition;                                //Rayの位置
-    private float Distance = 0.6f;                              //Rayの長さ
+    private float Distance = 1.0f;                              //Rayの長さ
     private Vector3 Cameraforward;
 
     private GameObject gameManager;
@@ -42,7 +42,6 @@ public class player : MonoBehaviour
 
     //壁衝突
     public GameObject WallhitEffectobj;
-
     //ダメージエフェクト
     public GameObject DamageEffectobj;
 
@@ -110,7 +109,6 @@ public class player : MonoBehaviour
         Debug.DrawRay(ray.origin, ray.direction * Distance, Color.red); // レイを赤色で表示させる
         int invertcount = turnManager.GetInvertCount();
 
-        Debug.Log(turnManager.GetInvertCount());
         if (invertcount <= 0)
         {
             isActive = true;
@@ -118,7 +116,7 @@ public class player : MonoBehaviour
         if (isActive)
         {
             Vector3 pos = transform.position;
-            pos.y = pos.y * -1 + 4.0f;
+            pos.y = pos.y * -1 + 3.5f;
             transform.position = pos;
             turnManager.ChangeEnvironment();
             turnManager.ResetInvertCount();
@@ -131,8 +129,6 @@ public class player : MonoBehaviour
         if (m_State == StatePattern.Walk)
         {
             rig.velocity = Direction * Speed;
-
-
         }
     }
 
@@ -167,12 +163,11 @@ public class player : MonoBehaviour
                 {
                     m_State = StatePattern.Walk;
                 }
-                if (Input.GetAxisRaw("Horizontal") == 0 && Mathf.Abs(Input.GetAxisRaw("Vertical")) == 1 && rad >= 1.0f )
+                if (Input.GetAxisRaw("Horizontal") == 0 && Mathf.Abs(Input.GetAxisRaw("Vertical")) == 1 && rad >= 1.0f)
                 {
                     m_State = StatePattern.Walk;
                 }
             }
-
         }
     }
 
@@ -189,26 +184,6 @@ public class player : MonoBehaviour
                 audioSource.PlayOneShot(wallhit);
                 TurnReset();
             }
-
-            /*if (hit.collider.CompareTag("HealItem"))
-            {
-                //回復アイテムエフェクト
-                Vector3 pos = new Vector3(hit.collider.transform.position.x, hit.collider.transform.position.y + 1, hit.collider.transform.position.z);
-                GetObject(ItemEffectObj, pos, Quaternion.identity);
-                audioSource.PlayOneShot(time);
-                Destroy(hit.collider.gameObject);
-                turnManager.AddTurnCount(1);
-            }
-
-            if (hit.collider.CompareTag("LightUp"))
-            {
-                //アイテムエフェクト
-                Vector3 pos = new Vector3(hit.collider.transform.position.x, hit.collider.transform.position.y + 1, hit.collider.transform.position.z);
-                GetObject(ItemEffectObj, pos, Quaternion.identity);
-                audioSource.PlayOneShot(Lightupse);
-                Destroy(hit.collider.gameObject);
-                m_PlayerLight.range += m_LightUp;
-            }*/
 
             if (hit.collider.CompareTag("BreakWall"))
             {
@@ -289,6 +264,5 @@ public class player : MonoBehaviour
         }
         Instantiate(obj, effectpos, effectqua, Effects);   //生成と同時に親をEffectに設定
     }
-    
-    
+
 }
