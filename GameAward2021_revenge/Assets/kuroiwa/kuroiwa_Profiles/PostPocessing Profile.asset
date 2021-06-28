@@ -1,5 +1,33 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-6645933594595464386
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 556797029e73b2347956b6579e77e05b, type: 3}
+  m_Name: DepthOfField
+  m_EditorClassIdentifier: 
+  active: 0
+  enabled:
+    overrideState: 1
+    value: 0
+  focusDistance:
+    overrideState: 1
+    value: 10.33
+  aperture:
+    overrideState: 1
+    value: 16.7
+  focalLength:
+    overrideState: 1
+    value: 50
+  kernelSize:
+    overrideState: 1
+    value: 1
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16,6 +44,7 @@ MonoBehaviour:
   - {fileID: 1897905080325569934}
   - {fileID: 1688484817937848053}
   - {fileID: 5588449233042074861}
+  - {fileID: -6645933594595464386}
 --- !u!114 &1688484817937848053
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -37,7 +66,7 @@ MonoBehaviour:
     value: 1
   intensity:
     overrideState: 1
-    value: 0.6
+    value: 1
   color:
     overrideState: 1
     value: {r: 0, g: 0, b: 0, a: 1}
@@ -120,7 +149,7 @@ MonoBehaviour:
     value: 1
   intensity:
     overrideState: 1
-    value: 2.54
+    value: 13.78
   threshold:
     overrideState: 1
     value: 1
