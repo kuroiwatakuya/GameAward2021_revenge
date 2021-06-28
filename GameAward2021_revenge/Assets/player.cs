@@ -139,15 +139,15 @@ public class player : MonoBehaviour
         {
             if (turnManager.GetEnvironment() == 1)
             {
-                Cameraforward = Vector3.Scale(m_MainCamera.transform.forward, new Vector3(1, 0, 1)).normalized;
+                Cameraforward = -Vector3.Scale(new Vector3(m_MainCamera.transform.position.x,0.0f, m_MainCamera.transform.position.z).normalized, new Vector3(1, 1, 1));
                 Direction = Cameraforward * Input.GetAxisRaw("Vertical") + m_MainCamera.transform.right * Input.GetAxisRaw("Horizontal");
             }
             else
             {
-                Cameraforward = Vector3.Scale(m_UnderCamera.transform.forward, new Vector3(1, 0, 1)).normalized;
-                Direction = Cameraforward * Input.GetAxisRaw("Vertical") + m_UnderCamera.transform.right * Input.GetAxisRaw("Horizontal");
+                Cameraforward = -Vector3.Scale(new Vector3(m_UnderCamera.transform.position.x, 0.0f, m_MainCamera.transform.position.z).normalized, new Vector3(1, 1, 1));
+                Direction =Cameraforward* Input.GetAxisRaw("Vertical") + m_UnderCamera.transform.right * Input.GetAxisRaw("Horizontal");
             }
-
+            
 
             //ÉvÉåÉCÉÑÅ[ÇÃâÒì]äpìxÇåvéZ
             Quaternion q = Quaternion.LookRotation(Direction.normalized, Vector3.up);
@@ -198,6 +198,7 @@ public class player : MonoBehaviour
             if (hit.collider.CompareTag("SpeedDownWall"))
             {
                 TurnReset();
+                rig.velocity = Vector3.zero;
                 audioSource.PlayOneShot(speeddown);
                 hit.collider.gameObject.SetActive(false);
             }
