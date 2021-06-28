@@ -7,25 +7,32 @@ using UnityEngine;
 //---------------------------
 public class stageselect : MonoBehaviour
 {
-    private float speed = 10.0f;
+    private float speed = 0.5f;
     private Vector3 move;
     private int count;
 
-    private Vector3[] Setpos = new Vector3[]{
-        new Vector3(0.0f,0.0f,0.0f),        //ステージ1
-        new Vector3(0.0f,5.0f,0.0f),        //ステージ2
-        new Vector3(0.0f,10.0f,0.0f),      //ステージ3
-        new Vector3(0.0f,13.0f,0.0f),      //ステージ4
-        new Vector3(0.0f,14.0f,0.0f),      //ステージ5
-        new Vector3(0.0f,15.0f,0.0f),      //ステージ6
-        new Vector3(0.0f,16.0f,0.0f),      //ステージ7
-        new Vector3(0.0f,18.0f,0.0f),      //ステージ8
-        new Vector3(0.0f,20.0f,0.0f)       //ステージ9
-    };
+    private bool MoveFlag = false;
+
+    Vector3 nextpos;
+    Vector3 keeppos;
+
+    //private Vector3[] Setpos = new Vector3[]{
+    //    new Vector3(0.0f,0.0f,0.0f),        //ステージ1
+    //    new Vector3(0.0f,5.0f,0.0f),        //ステージ2
+    //    new Vector3(0.0f,10.0f,0.0f),      //ステージ3
+    //    new Vector3(0.0f,13.0f,0.0f),      //ステージ4
+    //    new Vector3(0.0f,14.0f,0.0f),      //ステージ5
+    //    new Vector3(0.0f,15.0f,0.0f),      //ステージ6
+    //    new Vector3(0.0f,16.0f,0.0f),      //ステージ7
+    //    new Vector3(0.0f,18.0f,0.0f),      //ステージ8
+    //    new Vector3(0.0f,20.0f,0.0f)       //ステージ9
+    //};
+    [SerializeField] private GameObject[] stagepos; 
 
     private GameObject player;
     private int playernum;
     private Vector3 playerpos;
+    private float blend;
 
     // Start is called before the first frame update
     void Start()
@@ -40,28 +47,32 @@ public class stageselect : MonoBehaviour
     {
         movepos();
         playerpos = player.transform.position;
+
+        nextpos = stagepos[playernum + 1].transform.position;
+        keeppos = stagepos[playernum].transform.position;
+
     }
 
     private void movepos()
     {
-        Vector3 nextpos;
-        Vector3 keeppos;
-        if(count > speed)
+
+        if (Input.GetKeyDown(KeyCode.Q) && !MoveFlag)
         {
-            count = 0;
-            move = new Vector3(0.0f, 0.0f, 0.0f);
-            playernum += 1;
+            MoveFlag = true;
         }
-        if (Input.GetKey(KeyCode.Q))
+
+        if (MoveFlag)
         {
-            nextpos = Setpos[playernum + 1];    //次のやつ
-            keeppos = nextpos - Setpos[playernum];  //差分
-            move = keeppos / speed;     //変化量
+
+            blend += speed * Time.deltaTime;
+            player.transform.position = Vector3.Lerp(keeppos, nextpos, blend);
+
+            if(blend > 1)
+            {
+                blend = 0;
+                MoveFlag = false;
+                playernum++;
+            }
         }
-        if(move.magnitude > 0)
-        {
-            count++;
-        }
-        player.transform.Translate(move);
     }
 }
