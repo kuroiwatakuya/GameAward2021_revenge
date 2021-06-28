@@ -18,6 +18,9 @@ public class CameraScript : MonoBehaviour
     private GameObject m_GameManager;
     TurnManager m_TurnManager;
 
+    private GameObject m_MainCamera;
+    private StartCamera m_StartCameraScript;
+
     enum PositionNum
     {
         Pos0,
@@ -40,6 +43,10 @@ public class CameraScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
+        m_MainCamera  = GameObject.FindWithTag("MainCamera");
+        m_StartCameraScript = m_MainCamera.GetComponent<StartCamera>();
+
         m_GameManager = GameObject.FindWithTag("GameManager");
         m_TurnManager = m_GameManager.GetComponent<TurnManager>();
 
@@ -55,129 +62,135 @@ public class CameraScript : MonoBehaviour
     void Update()
     {
 
-        if (!m_RotFlag)
+        if (!m_StartCameraScript.GetMove())
         {
-            if (Input.GetKeyDown("joystick button 4") || Input.GetKeyDown(KeyCode.J))
+            if (!m_RotFlag)
             {
-                m_Direction = Direction.LEFT;
-                m_RotFlag = true;
-            }
-            if (Input.GetKeyDown("joystick button 5") || Input.GetKeyDown(KeyCode.L))
-            {
-                m_Direction = Direction.RIGHT;
-                m_RotFlag = true;
+                if (Input.GetKeyDown("joystick button 4") || Input.GetKeyDown(KeyCode.J))
+                {
+                    m_Direction = Direction.LEFT;
+                    m_RotFlag = true;
+                }
+                if (Input.GetKeyDown("joystick button 5") || Input.GetKeyDown(KeyCode.L))
+                {
+                    m_Direction = Direction.RIGHT;
+                    m_RotFlag = true;
+                }
             }
         }
     }
 
     private void FixedUpdate()
     {
-        
 
-        Vector3 Pos = this.transform.position;
-
-        this.gameObject.transform.LookAt(new Vector3 (m_Field.transform.position.x, m_Field.transform.position.y - m_CameraLookPoint, m_Field.transform.position.z));
-
-        if (m_Direction == Direction.LEFT)
+        if (!m_StartCameraScript.GetMove())
         {
-            if (m_PositionNum == PositionNum.Pos0)
-            {
-                m_GoalPosition = new Vector3(m_InitPosition.z, transform.position.y, 0);
-            }
-            else if (m_PositionNum == PositionNum.Pos1)
-            {
-                m_GoalPosition = new Vector3(m_InitPosition.x, transform.position.y, m_InitPosition.z);
-            }
-            else if (m_PositionNum == PositionNum.Pos2)
-            {
-                m_GoalPosition = new Vector3(m_InitPosition.z * -1, transform.position.y, 0);
-            }
-            else if (m_PositionNum == PositionNum.Pos3)
-            {
-                m_GoalPosition = new Vector3(m_InitPosition.x, transform.position.y, m_InitPosition.z * -1);
-            }
+            Vector3 Pos = this.transform.position;
 
-            Pos = Vector3.Lerp(m_StartPosition, m_GoalPosition, m_Blend);
-            this.transform.position = Pos;
+            this.gameObject.transform.LookAt(new Vector3(m_Field.transform.position.x, m_Field.transform.position.y - m_CameraLookPoint, m_Field.transform.position.z));
 
-            m_Blend += m_Speed * Time.deltaTime;
-            if (m_Blend > 1)
+            if (m_Direction == Direction.LEFT)
             {
-                this.transform.position = m_GoalPosition;
-                m_Direction = Direction.NONE;
-                m_Blend = 0;
-                m_StartPosition = m_GoalPosition;
-                m_RotFlag = false;
-
                 if (m_PositionNum == PositionNum.Pos0)
                 {
-                    m_PositionNum = PositionNum.Pos3;
-                }
-                else if(m_PositionNum == PositionNum.Pos1)
-                {
-                    m_PositionNum = PositionNum.Pos0;
-                }
-                else if (m_PositionNum == PositionNum.Pos2)
-                {
-                    m_PositionNum = PositionNum.Pos1;
-                }
-                else if (m_PositionNum == PositionNum.Pos3)
-                {
-                    m_PositionNum = PositionNum.Pos2;
-                }
-
-            }
-        }
-
-        if (m_Direction == Direction.RIGHT)
-        {
-            if (m_PositionNum == PositionNum.Pos0)
-            {
-                m_GoalPosition = new Vector3(m_InitPosition.z * -1, transform.position.y, 0);
-            }
-            else if (m_PositionNum == PositionNum.Pos1)
-            {
-                m_GoalPosition = new Vector3(m_InitPosition.x, transform.position.y, m_InitPosition.z * -1);
-            }
-            else if (m_PositionNum == PositionNum.Pos2)
-            {
-                m_GoalPosition = new Vector3(m_InitPosition.z, transform.position.y, 0);
-            }
-            else if (m_PositionNum == PositionNum.Pos3)
-            {
-                m_GoalPosition = new Vector3(m_InitPosition.x, transform.position.y, m_InitPosition.z);
-            }
-
-            Pos = Vector3.Lerp(m_StartPosition, m_GoalPosition, m_Blend);
-            this.transform.position = Pos;
-
-            m_Blend += m_Speed * Time.deltaTime;
-            if (m_Blend > 1)
-            {
-                this.transform.position = m_GoalPosition;
-                m_Direction = Direction.NONE;
-                m_Blend = 0;
-                m_StartPosition = m_GoalPosition;
-                m_RotFlag = false;
-
-                if (m_PositionNum == PositionNum.Pos0)
-                {
-                    m_PositionNum = PositionNum.Pos1;
+                    m_GoalPosition = new Vector3(m_InitPosition.z, transform.position.y, 0);
                 }
                 else if (m_PositionNum == PositionNum.Pos1)
                 {
-                    m_PositionNum = PositionNum.Pos2;
+                    m_GoalPosition = new Vector3(m_InitPosition.x, transform.position.y, m_InitPosition.z);
                 }
                 else if (m_PositionNum == PositionNum.Pos2)
                 {
-                    m_PositionNum = PositionNum.Pos3;
+                    m_GoalPosition = new Vector3(m_InitPosition.z * -1, transform.position.y, 0);
                 }
                 else if (m_PositionNum == PositionNum.Pos3)
                 {
-                    m_PositionNum = PositionNum.Pos0;
+                    m_GoalPosition = new Vector3(m_InitPosition.x, transform.position.y, m_InitPosition.z * -1);
                 }
 
+                Pos = Vector3.Lerp(m_StartPosition, m_GoalPosition, m_Blend);
+                this.transform.position = Pos;
+
+                m_Blend += m_Speed * Time.deltaTime;
+                if (m_Blend > 1)
+                {
+                    this.transform.position = m_GoalPosition;
+                    m_Direction = Direction.NONE;
+                    m_Blend = 0;
+                    m_StartPosition = m_GoalPosition;
+                    m_RotFlag = false;
+
+                    if (m_PositionNum == PositionNum.Pos0)
+                    {
+                        m_PositionNum = PositionNum.Pos3;
+                    }
+                    else if (m_PositionNum == PositionNum.Pos1)
+                    {
+                        m_PositionNum = PositionNum.Pos0;
+                    }
+                    else if (m_PositionNum == PositionNum.Pos2)
+                    {
+                        m_PositionNum = PositionNum.Pos1;
+                    }
+                    else if (m_PositionNum == PositionNum.Pos3)
+                    {
+                        m_PositionNum = PositionNum.Pos2;
+                    }
+
+                }
             }
+
+            if (m_Direction == Direction.RIGHT)
+            {
+                if (m_PositionNum == PositionNum.Pos0)
+                {
+                    m_GoalPosition = new Vector3(m_InitPosition.z * -1, transform.position.y, 0);
+                }
+                else if (m_PositionNum == PositionNum.Pos1)
+                {
+                    m_GoalPosition = new Vector3(m_InitPosition.x, transform.position.y, m_InitPosition.z * -1);
+                }
+                else if (m_PositionNum == PositionNum.Pos2)
+                {
+                    m_GoalPosition = new Vector3(m_InitPosition.z, transform.position.y, 0);
+                }
+                else if (m_PositionNum == PositionNum.Pos3)
+                {
+                    m_GoalPosition = new Vector3(m_InitPosition.x, transform.position.y, m_InitPosition.z);
+                }
+
+                Pos = Vector3.Lerp(m_StartPosition, m_GoalPosition, m_Blend);
+                this.transform.position = Pos;
+
+                m_Blend += m_Speed * Time.deltaTime;
+                if (m_Blend > 1)
+                {
+                    this.transform.position = m_GoalPosition;
+                    m_Direction = Direction.NONE;
+                    m_Blend = 0;
+                    m_StartPosition = m_GoalPosition;
+                    m_RotFlag = false;
+
+                    if (m_PositionNum == PositionNum.Pos0)
+                    {
+                        m_PositionNum = PositionNum.Pos1;
+                    }
+                    else if (m_PositionNum == PositionNum.Pos1)
+                    {
+                        m_PositionNum = PositionNum.Pos2;
+                    }
+                    else if (m_PositionNum == PositionNum.Pos2)
+                    {
+                        m_PositionNum = PositionNum.Pos3;
+                    }
+                    else if (m_PositionNum == PositionNum.Pos3)
+                    {
+                        m_PositionNum = PositionNum.Pos0;
+                    }
+
+                }
+            }
+
         }
 
     }
