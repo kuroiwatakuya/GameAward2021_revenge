@@ -13,20 +13,9 @@ public class stageselect : MonoBehaviour
 
     private bool MoveFlag = false;
 
-    Vector3 nextpos;
-    Vector3 keeppos;
+    private Vector3 nextpos;
+    private Vector3 keeppos;
 
-    //private Vector3[] Setpos = new Vector3[]{
-    //    new Vector3(0.0f,0.0f,0.0f),        //ステージ1
-    //    new Vector3(0.0f,5.0f,0.0f),        //ステージ2
-    //    new Vector3(0.0f,10.0f,0.0f),      //ステージ3
-    //    new Vector3(0.0f,13.0f,0.0f),      //ステージ4
-    //    new Vector3(0.0f,14.0f,0.0f),      //ステージ5
-    //    new Vector3(0.0f,15.0f,0.0f),      //ステージ6
-    //    new Vector3(0.0f,16.0f,0.0f),      //ステージ7
-    //    new Vector3(0.0f,18.0f,0.0f),      //ステージ8
-    //    new Vector3(0.0f,20.0f,0.0f)       //ステージ9
-    //};
     [SerializeField] private GameObject[] stagepos; 
 
     private GameObject player;
@@ -34,9 +23,13 @@ public class stageselect : MonoBehaviour
     private Vector3 playerpos;
     private float blend;
 
+    public Terrain terrain;
+
     // Start is called before the first frame update
     void Start()
     {
+        Terrain terrain = Terrain.activeTerrain;
+
         //プレイヤーの位置情報の取得
         player = GameObject.FindWithTag("Player");
         playernum = 0;
@@ -45,8 +38,8 @@ public class stageselect : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        movepos();
         playerpos = player.transform.position;
+        movepos();
 
         nextpos = stagepos[playernum + 1].transform.position;
         keeppos = stagepos[playernum].transform.position;
@@ -67,7 +60,12 @@ public class stageselect : MonoBehaviour
             blend += speed * Time.deltaTime;
             player.transform.position = Vector3.Lerp(keeppos, nextpos, blend);
 
-            if(blend > 1)
+            Vector3 ppos = player.transform.position;
+            ppos.y = terrain.SampleHeight(ppos) + 1.0f;
+            player.transform.position = ppos;
+
+
+            if (blend > 1)
             {
                 blend = 0;
                 MoveFlag = false;
