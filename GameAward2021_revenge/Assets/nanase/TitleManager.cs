@@ -51,7 +51,7 @@ public class TitleManager : MonoBehaviour
 
         if (fadeManager.GetIsFade() == 1 && fadeManager.GetAlfa() > 1.0f)
         {
-            SceneManager.LoadScene("Select");
+            SceneManager.LoadScene("Select New");
         }
     }
 }

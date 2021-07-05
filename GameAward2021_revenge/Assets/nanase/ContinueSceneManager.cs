@@ -63,7 +63,7 @@ public class ContinueSceneManager : MonoBehaviour
         if (fadeManager.GetIsFade() == 1 && fadeManager.GetAlfa() > 1.0f)
         {
             if (num == 1)
-                SceneManager.LoadScene("Select");
+                SceneManager.LoadScene("Select New");
             if (num == 0)
             {
                 // Œ»İ‚ÌScene–¼‚ğæ“¾‚·‚é
