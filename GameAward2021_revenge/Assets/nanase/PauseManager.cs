@@ -103,7 +103,7 @@ public class PauseManager : MonoBehaviour
                 SceneManager.LoadScene("Title");
                 break;
             case (int)SceneNum.Select:
-                SceneManager.LoadScene("Select");
+                SceneManager.LoadScene("Select New");
                 break;
             case (int)SceneNum.ReStart:
                 // Œ»İ‚ÌScene–¼‚ğæ“¾‚·‚é
