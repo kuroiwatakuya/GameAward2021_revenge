@@ -361,7 +361,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 144981242}
-  - {fileID: 1726471983}
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -914,7 +913,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 1726471983}
+    m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 4852723434333293595, guid: 5ce83cd72dab7fe4da5fd85ada3390bc,
         type: 3}
@@ -924,22 +923,22 @@ PrefabInstance:
     - target: {fileID: 4964590271738889907, guid: 5ce83cd72dab7fe4da5fd85ada3390bc,
         type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 4964590271738889907, guid: 5ce83cd72dab7fe4da5fd85ada3390bc,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.6600008
+      value: 3.5999994
       objectReference: {fileID: 0}
     - target: {fileID: 4964590271738889907, guid: 5ce83cd72dab7fe4da5fd85ada3390bc,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 6.790001
+      value: 16.6
       objectReference: {fileID: 0}
     - target: {fileID: 4964590271738889907, guid: 5ce83cd72dab7fe4da5fd85ada3390bc,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 6.91
+      value: -46.6
       objectReference: {fileID: 0}
     - target: {fileID: 4964590271738889907, guid: 5ce83cd72dab7fe4da5fd85ada3390bc,
         type: 3}
@@ -1154,12 +1153,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &1114635995 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4964590271738889907, guid: 5ce83cd72dab7fe4da5fd85ada3390bc,
-    type: 3}
-  m_PrefabInstance: {fileID: 981017983}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1164116680
 GameObject:
   m_ObjectHideFlags: 0
@@ -1736,12 +1729,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1726471979}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -8.2, y: 6.7, z: -15.209999}
+  m_LocalPosition: {x: 5.26, y: 9.809999, z: -53.51}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 1114635995}
-  m_Father: {fileID: 443355325}
-  m_RootOrder: 1
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1726471984
 MonoBehaviour:
